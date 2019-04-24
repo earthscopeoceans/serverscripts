@@ -36,7 +36,7 @@ function varargout=vit2tbl(fname,fnout)
 %
 % TESTED ON MATLAB 9.0.0.341360 (R2016a)
 % 
-% Last modified by fjsimons-at-alum.mit.edu, 03/19/2019
+% Last modified by fjsimons-at-alum.mit.edu, 04/24/2019
 
 % Default input filename, which MUST end in .vit
 defval('fname','/u/fjsimons/MERMAID/serverdata/vitdata/452.020-P-08.vit')
