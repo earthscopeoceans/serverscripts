@@ -2,39 +2,38 @@
 #
 # Makes a copy of the MERMAID server for down-the-line processing
 #
-# Last modified by aetimmes-at-princeton.edu, 10/08/2018
-# Last modified by fjsimons-at-alum.mit.edu, 10/08/2018
+# Last input from aetimmes-at-princeton.edu, 10/08/2018
+# Last modified by fjsimons-at-alum.mit.edu, 04/24/2019
 
 # Where was I, so I can return to it
 set returnto = `pwd`
 
 # Where will all the data be copied to?
-set whereto =  /u/fjsimons/MERMAID/server/
+set whereto =  /u/fjsimons/MERMAID/server
 
 # Where will, additionally, all the *.vit files be copied to?
 set wherevit = /u/fjsimons/MERMAID/serverdata/vitdata
 # And where will the *.tbl files go?
 set wheretbl = /u/fjsimons/MERMAID/serverdata/tbldata
 
-# SOLUTION 1
-# This line would belong in another session to activate the agent once
-# ssh-add ~/.ssh/id_rsa_mermaid
-# And then every time, this would make the copy in its entirety
-# scp mermaid@mermaid.princeton.edu:~/\*.\* $whereto
+# The better solution for setting up a CRON job via passwordless
+# single-command-use SSH keys Of course the public keys need to be
+# present on the respective servers, and the appropriate commands for
+# which they are designed need to be locally present - i.e. RRSYNC
 
-# SOLUTION 2
-# But this is the better solution for setting up a CRON job:
-# a passwordless single-command-use SSH key - from Princeton
+# From Princeton at Princeton, we get it all
 echo "RSYNCING PRINCETON MERMAIDS"
 rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av mermaid@mermaid.princeton.edu:\*.\* $whereto
-# From GeoAzur at Nice - make sure the command in the public key exists
+
+# From GeoAzur at Nice, we just get the relevant data 
 echo "RSYNCING NICE MERMAIDS"
 rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av eso@mermaid.unice.fr:\*.MER $whereto
 rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av eso@mermaid.unice.fr:\*.LOG $whereto
 rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av eso@mermaid.unice.fr:\*.vit $whereto
 rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av eso@mermaid.unice.fr:\*.cmd $whereto
 rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av eso@mermaid.unice.fr:\*.out $whereto
-# From KobeUni at GeoAzur at Nice
+
+# From KobeUni at GeoAzur at Nice, we just get the relevant data
 echo "RSYNCING KOBE MERMAIDS"
 rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av kobeuni@mermaid.unice.fr:\*.MER $whereto
 rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av kobeuni@mermaid.unice.fr:\*.LOG $whereto
@@ -42,7 +41,7 @@ rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av kobeuni@mermaid.unice.fr
 rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av kobeuni@mermaid.unice.fr:\*.cmd $whereto
 rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av kobeuni@mermaid.unice.fr:\*.out $whereto
 
-# Then, go into the copied directory and use git to ink it in
+# Then, go into the copied directory and use GIT to ink it in
 cd $whereto
 git add .
 git commit -m "A whole fresh copy made"
@@ -50,19 +49,19 @@ git commit -m "A whole fresh copy made"
 # Then, copy the *vit files separately for extra care
 /bin/cp -u $whereto/*.vit $wherevit
 
-# Make a backup
+# Make a local backup of that *vit file repository also
 cd $wherevit
 git add .
 git commit -m "A whole fresh copy made"
 
-# And these *.vit files need to be converted to *.tbl files
+# And then these *.vit files need to be converted to *.tbl files via a MATLAB precompiled code
 set vitfiles = `ls *.vit`
 foreach file ($vitfiles[*])
     echo Processing $wherevit/$file
    /u/fjsimons/PROGRAMS/MFILES/mermaid/vit2tbl $wherevit/$file $wheretbl/$file:r.tbl
 end
 
-# And these *.tbl files then need to be pushed/synced onto geoweb using this script
+# And these *.tbl files then need to be pushed/synced onto GEOWEB using this script
 /u/fjsimons/PROGRAMS/UFILES/vitexport
 
 # Return to where I was
