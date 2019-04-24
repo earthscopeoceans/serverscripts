@@ -28,11 +28,11 @@ set floats = (01 02 03 04 05 06 07 08 09 10 11 12 13 16 17 18 19 20 21 22 23 24 
 # Do them in the loop - watch the treatment of leading zeroes
 foreach float ($floats[*])
      # Individual floats, last 30 lines only, use P for all of them
-     tail -30    $fromwhere/452.???-?-$float.tbl >! $tothere/P0{$float}_030.txt
+     tail -30    $fromwhere/452.???-?-$float.tbl  >! $tothere/P0{$float}_030.txt
      # Individual floats, complete history, use P for all of them
-     /bin/cp -f  $fromwhere/452.???-?-$float.tbl    $tothere/P0${float}_all.txt
+     /bin/cp -f  $fromwhere/452.???-?-$float.tbl     $tothere/P0${float}_all.txt
      # Collective files, only their last line
-    tail -1 $fromwhere/452.???-P-$float.tbl >>! $tothere/all.txt
+    tail -1      $fromwhere/452.???-?-$float.tbl >>! $tothere/all.txt
 end
 
 # Then all of those get pushed on to the server via a passwordless
