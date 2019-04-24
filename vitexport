@@ -6,8 +6,8 @@
 # Last modified by fjsimons-at-alum.mit.edu, 04/24/2019
 
 # I HAVE BEEN EDITING ONLY THE TBL FILES TO REMOVE THE LINES WHERE WE
-# WERE ON LAND OR ON DECK THIS SHOULD BE PART OF THIS SCRIPT TO TAKE
-# OUT A VARIABLE NUMBER OF LINES, DETERMINED ONCE
+# WERE ON LAND OR ON DECK THIS; SHOULD BE PART OF THIS SCRIPT TO TAKE
+# OUT A VARIABLE NUMBER OF LINES, DETERMINED ONCE, BUT FOR NOW LEAVE
 
 # Where are these being kept?
 set fromwhere = /u/fjsimons/MERMAID/serverdata/tbldata
@@ -34,23 +34,10 @@ foreach float ($floats[*])
     tail -1 $fromwhere/452.???-P-$float.tbl >>! $tothere/all.txt
 end
 
-# Then all of those get pushed on to the server
-
-# SOLUTION 1
-# Add the ssh key if it hasn't been already
-#set isit = `ssh-add -l | grep geoweb`
-#if ( $#isit == 0 ) then
-#   ssh-add ~/.ssh/id_rsa_geoweb
-#endif
-#scp $tothere/*_030.txt  fjsimons@geoweb.princeton.edu:/home/www/people/simons/SOM
-#scp $tothere/*_all.txt  fjsimons@geoweb.princeton.edu:/home/www/people/simons/SOM 
-#scp $tothere/all.txt    fjsimons@geoweb.princeton.edu:/home/www/people/simons/SOM
-
-# SOLUTION 2
-# But this is the better solution for setting up a CRON job:
-# a passwordless single-command-use SSH key for back up to a directory that is specified IN THE REMOTE KEY:
-# it is /home/www/people/simons/SOM
-# ssh-add ~/.ssh/id_remote_backup
+# Then all of those get pushed on to the server via a passwordless
+# single-command-use SSH key for back up to a directory that is
+# specified in the remote (it is /home/www/people/simons/SOM on
+# geoweb.princeton.edu), so that the pushing can be done via CRON
 rsync -ve "ssh -i /u/fjsimons/.ssh/id_remote_backup" $tothere/*_030.txt fjsimons@geoweb.princeton.edu:
 rsync -ve "ssh -i /u/fjsimons/.ssh/id_remote_backup" $tothere/*_all.txt fjsimons@geoweb.princeton.edu:
 rsync -ve "ssh -i /u/fjsimons/.ssh/id_remote_backup" $tothere/all.txt   fjsimons@geoweb.princeton.edu:
