@@ -1,0 +1,58 @@
+#!/bin/tcsh
+#
+# Pushes tabled vital files, made by VIT2TBL.M, or indeed its
+# runtime-compiled (mcc) version VIT2TBL, to the geoweb server
+#
+# Last modified by fjsimons-at-alum.mit.edu, 04/24/2019
+
+# I HAVE BEEN EDITING ONLY THE TBL FILES TO REMOVE THE LINES WHERE WE
+# WERE ON LAND OR ON DECK THIS SHOULD BE PART OF THIS SCRIPT TO TAKE
+# OUT A VARIABLE NUMBER OF LINES, DETERMINED ONCE
+
+# Where are these being kept?
+set fromwhere = /u/fjsimons/MERMAID/serverdata/tbldata
+
+# Where are these being sent to?
+set tothere = /u/fjsimons/MERMAID/serverdata/locdata
+
+# These ones are actually floating! Make an explicit list of the numbers,
+# knowing that the name is 452.020-P-??.tbl for Princeton and GeoAzur and 
+# the name for Kobe Uni is 452.112-N-??.tbl but in the conversion I
+# use P??? since the running numbers do not yet overlap 
+set floats = (01 02 03 04 05 06 07 08 09 10 11 12 13 16 17 18 19 20 21 22 23 24 25)
+
+# Remove the ALL file before making it again
+/bin/rm -f $tothere/all.txt
+
+# Do them in the loop - watch the treatment of leading zeroes
+foreach float ($floats[*])
+     # Individual floats, last 30 lines only, use P for all of them
+     tail -30    $fromwhere/452.???-?-$float.tbl >! $tothere/P0{$float}_030.txt
+     # Individual floats, complete history, use P for all of them
+     /bin/cp -f  $fromwhere/452.???-?-$float.tbl    $tothere/P0${float}_all.txt
+     # Collective files, only their last line
+    tail -1 $fromwhere/452.???-P-$float.tbl >>! $tothere/all.txt
+end
+
+# Then all of those get pushed on to the server
+
+# SOLUTION 1
+# Add the ssh key if it hasn't been already
+#set isit = `ssh-add -l | grep geoweb`
+#if ( $#isit == 0 ) then
+#   ssh-add ~/.ssh/id_rsa_geoweb
+#endif
+#scp $tothere/*_030.txt  fjsimons@geoweb.princeton.edu:/home/www/people/simons/SOM
+#scp $tothere/*_all.txt  fjsimons@geoweb.princeton.edu:/home/www/people/simons/SOM 
+#scp $tothere/all.txt    fjsimons@geoweb.princeton.edu:/home/www/people/simons/SOM
+
+# SOLUTION 2
+# But this is the better solution for setting up a CRON job:
+# a passwordless single-command-use SSH key for back up to a directory that is specified IN THE REMOTE KEY:
+# it is /home/www/people/simons/SOM
+# ssh-add ~/.ssh/id_remote_backup
+rsync -ve "ssh -i /u/fjsimons/.ssh/id_remote_backup" $tothere/*_030.txt fjsimons@geoweb.princeton.edu:
+rsync -ve "ssh -i /u/fjsimons/.ssh/id_remote_backup" $tothere/*_all.txt fjsimons@geoweb.princeton.edu:
+rsync -ve "ssh -i /u/fjsimons/.ssh/id_remote_backup" $tothere/all.txt   fjsimons@geoweb.princeton.edu:
+
+
