@@ -1,8 +1,9 @@
 #!/bin/tcsh
 #
 # Pushes tabled vital files, made by VIT2TBL.M, or indeed its
-# runtime-compiled (mcc) version VIT2TBL, to the geoweb server
+# runtime-compiled (MCC) version VIT2TBL, to the geoweb server
 #
+# Last input from aetimmes-at-princeton.edu, 10/08/2018
 # Last modified by fjsimons-at-alum.mit.edu, 04/24/2019
 
 # I HAVE BEEN EDITING ONLY THE TBL FILES TO REMOVE THE LINES WHERE WE
