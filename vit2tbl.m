@@ -4,6 +4,7 @@ function varargout=vit2tbl(fname,fnout)
 % Reads a MERMAID *.vit file, parses the content, and writes it to *.tbl
 %
 % (One would start with SERVERCOPY sync from our receiving server)
+% (SERVERCOPY now includes the compiled version of VIT2TBL))
 % (One would end with copying the output to our web server using VITEXPORT)
 % (One would read those files off the Google Maps API on www.earthscopeoceans.org)
 %
