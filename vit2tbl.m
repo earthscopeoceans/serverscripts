@@ -117,15 +117,15 @@ while lred~=-1
     isend=strfind(lred,endmark);
     % But if it has hit a new beginning, need to reset
     isnew=strfind(lred,begmark);
-    % The cannot both be true, but one needs to tell the other and back up
-    if ~isempty(isnew); isend=isnew; fseek(fin,oldpos,-1) ; end
+    % They cannot both be true, but one needs to tell the other and back up
+    if ~isempty(isnew); isend=isnew; fseek(fin,oldpos,-1); end
   end
 
   % Here there is no culling, unlike in MER2SAC
 
-  % If an entry is corrupted, it could have too many lines
-  % OVERRIDE SINCE FORMCONV WILL READ AS FAR AS IT CAN
-  if 1==1 | [size(jentry,1)<=nrlines & index<=nrlines]
+  % If an entry is corrupted, FORMCONV will read as far as it can but it
+  % wants to at least get down to the sixth line, from seven on it "tries"
+  if index>=6
     % Format conversion 
     [stdt,STLA,STLO,hdop,vdop,Vbat,minV,Pint,Pext,Prange,cmdrcd,f2up,fupl]=...
 	formconv(jentry);
@@ -135,7 +135,6 @@ while lred~=-1
       % Write one line in the new file, if the data are not corrupted...
       fprintf(fout,fmtout,...
 	      stname,stdt,STLA,STLO,hdop,vdop,Vbat,minV,Pint,Pext,Prange,cmdrcd,f2up,fupl);
-
     end
   end
     
@@ -194,7 +193,7 @@ vitdat=jentry{1}(33:51); % Check this is like: 2018-04-09T08:33:02
 % SECOND LINE: latitude and longitude
 vitlat=jentry{2}(21:34); % Check this is like: N34deg43.118mn
 vitlon=jentry{2}(37:51); % Check this is like: E135deg17.443mn
-			 
+
 % Convert these already
 [stdt,STLA,STLO]=vit2loc(vitdat,vitlat,vitlon);
 
@@ -216,13 +215,15 @@ end
 % If no hdop or vdop have been read, assign NaN to them
 defval('hdop',NaN)
 defval('vdop',NaN)
-    
+
 % FOURTH LINE: battery level and minimum voltage
 vitbat=textscan(jentry{4},'%*s %*s %f %*s %*s %f');
 Vbat=vitbat{1}; % Check this is like 15425
 minV=vitbat{2}; % Check this is like 14962
+
 % FIFTH LINE: internal pressure
 Pint=cell2mat(textscan(jentry{5},'%*s %*s %f'));
+
 % SIXTH LINE: external pressure and range
 vitext=textscan(jentry{6},'%*s %*s %f %*s %*s %f');
 Pext=vitext{1};
