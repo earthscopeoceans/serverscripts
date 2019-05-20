@@ -17,7 +17,7 @@ set wherevit = /u/fjsimons/MERMAID/serverdata/vitdata
 set wheretbl = /u/fjsimons/MERMAID/serverdata/tbldata
 
 # The better solution for setting up a CRON job via passwordless
-# single-command-use SSH keys Of course the public keys need to be
+# single-command-use SSH keys. Of course the public keys need to be
 # present on the respective servers, and the appropriate commands for
 # which they are designed need to be locally present - i.e. RRSYNC
 
