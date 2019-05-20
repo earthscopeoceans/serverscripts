@@ -36,6 +36,10 @@ function varargout=vit2tbl(fname,fnout)
 % If the file is corrupted due to transmission problems, will handle gracefully
 %
 % TESTED ON MATLAB 9.0.0.341360 (R2016a)
+%
+% NOTE:
+%
+% Compile using mcc -m vit2tbl.m
 % 
 % Last modified by fjsimons-at-alum.mit.edu, 05/20/2019
 
@@ -49,10 +53,12 @@ oldext='.vit';
 % P-08 into P008 and P-0054 into P00054 from filenames of either
 % 452.020-P-22.vit
 % 452.020-P-0054.vit
-if length(fname)==16
+if length(suf(fname,'/'))==16
   stname=fname(strfind(fname,oldext)-4:strfind(fname,oldext)-1);
-elseif length(fname)==18
+elseif length(suf(fname,'/'))==18
   stname=fname(strfind(fname,oldext)-6:strfind(fname,oldext)-1);
+else
+  error('I need a valid filename!')
 end
 % Replace the dash with a number
 stname(abs(stname)==45)='0';
@@ -136,7 +142,7 @@ while lred~=-1
     % Format conversion 
     [stdt,STLA,STLO,hdop,vdop,Vbat,minV,Pint,Pext,Prange,cmdrcd,f2up,fupl]=...
 	formconv(jentry,stname);
-    
+
     % Do not bother if you're in the testing phase, when Pext will be SUPER negative
     if Pext>-2e6
       % Write one line in the new file, if the data are not corrupted...
