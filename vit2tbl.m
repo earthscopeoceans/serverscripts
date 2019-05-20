@@ -37,7 +37,7 @@ function varargout=vit2tbl(fname,fnout)
 %
 % TESTED ON MATLAB 9.0.0.341360 (R2016a)
 % 
-% Last modified by fjsimons-at-alum.mit.edu, 04/24/2019
+% Last modified by fjsimons-at-alum.mit.edu, 05/20/2019
 
 % Default input filename, which MUST end in .vit
 defval('fname','/u/fjsimons/MERMAID/serverdata/vitdata/452.020-P-08.vit')
@@ -46,8 +46,14 @@ defval('fname','/u/fjsimons/MERMAID/serverdata/vitdata/452.020-P-08.vit')
 oldext='.vit';
 
 % Map the file name to a "working name", this requires checking, turns
-% P-08 into P008
-stname=fname(strfind(fname,oldext)-4:strfind(fname,oldext)-1);
+% P-08 into P008 and P-0054 into P00054 from filenames of either
+% 452.020-P-22.vit
+% 452.020-P-0054.vit
+if length(fname)==16
+  stname=fname(strfind(fname,oldext)-4:strfind(fname,oldext)-1);
+elseif length(fname)==18
+  stname=fname(strfind(fname,oldext)-6:strfind(fname,oldext)-1);
+end
 % Replace the dash with a number
 stname(abs(stname)==45)='0';
 
@@ -129,7 +135,7 @@ while lred~=-1
   if index>=6
     % Format conversion 
     [stdt,STLA,STLO,hdop,vdop,Vbat,minV,Pint,Pext,Prange,cmdrcd,f2up,fupl]=...
-	formconv(jentry);
+	formconv(jentry,stname);
     
     % Do not bother if you're in the testing phase, when Pext will be SUPER negative
     if Pext>-2e6
@@ -184,13 +190,20 @@ fmt=[stname_fmt,stdt_fmt,STLA_fmt,STLO_fmt,hdop_fmt,vdop_fmt,Vbat_fmt,minV_fmt,P
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ROBUST FORMAT CONVERSION FROM .vit ENTRY TO ONE-LINER FOR .tbl FILE
-function [stdt,STLA,STLO,hdop,vdop,Vbat,minV,Pint,Pext,Prange,cmdrcd,f2up,fupl]=formconv(jentry)
+function [stdt,STLA,STLO,hdop,vdop,Vbat,minV,Pint,Pext,Prange,cmdrcd,f2up,fupl]=formconv(jentry,stname)
+
+% Take care of longer station names...
+if length(stname)==4
+  xdig=0;
+elseif length(stname)==6
+  xdig=2;
+end
 
 % Robustness is increasingly meaning: down to first error
 
 % Now you have one journal entry, and are ready to parse for output
 % FIRST LINE: Time stamp
-vitdat=jentry{1}(33:51); % Check this is like: 2018-04-09T08:33:02
+vitdat=jentry{1}([33:51]+xdig); % Check this is like: 2018-04-09T08:33:02
 % SECOND LINE: latitude and longitude
 vitlat=jentry{2}(21:34); % Check this is like: N34deg43.118mn
 vitlon=jentry{2}(37:51); % Check this is like: E135deg17.443mn
