@@ -1,0 +1,37 @@
+#!/bin/tcsh -f
+#
+# Counts SAC files of MERMAID data in the $MERMAID/processed directory
+# 
+# Written by Joel D. Simon, jdsimon-at-princeton-edu
+# Last modified by Frederik J. Simons, fjsimons-at-princeton-edu
+# July 29th, 2019
+
+# Take out N-03 as non-existent
+set floatnum = (N-01 N-02 N-04 N-05 P-06 P-07 P-08 P-09 P-10 P-11)
+set floatnum = ($floatnum P-12 P-13 P-16 P-17 P-18 P-19 P-20 P-21 P-22 P-23 P-24 P-25)
+
+set count = 0 
+
+set allsac = `find $MERMAID/processed/ -iname '*.sac'`
+
+echo ----------------------------------
+
+foreach float ($floatnum[*])
+   set perfloat1 = `ls -l $allsac | awk '/'$float'/' | wc -l`
+
+   set perfloat2 = `ls $MERMAID/processed/*$float*/*/*.sac | tail -1`
+    
+   if ($#perfloat2 != 0) then
+    set lasttime = `basename $perfloat2 | awk '{print substr($0,1,8)}'` 
+    set lastdate = `date -d $lasttime +'%d-%b-%Y'`
+   else
+    set lastdate = NaN
+   endif
+
+   printf "Float %s : %4.4i  --  %s \n" $float $perfloat1 $lastdate
+   @ count += $perfloat1
+end
+
+echo ----------------------------------
+printf "Total      : %4.4i\n" $count
+
