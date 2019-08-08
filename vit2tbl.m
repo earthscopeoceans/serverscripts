@@ -41,7 +41,7 @@ function varargout=vit2tbl(fname,fnout)
 %
 % Compile using mcc -m vit2tbl.m
 % 
-% Last modified by fjsimons-at-alum.mit.edu, 05/20/2019
+% Last modified by fjsimons-at-alum.mit.edu, 08/08/2019
 
 % Default input filename, which MUST end in .vit
 defval('fname','/u/fjsimons/MERMAID/serverdata/vitdata/452.020-P-08.vit')
@@ -55,13 +55,16 @@ oldext='.vit';
 % 452.020-P-0054.vit
 if length(suf(fname,'/'))==16
   stname=fname(strfind(fname,oldext)-4:strfind(fname,oldext)-1);
+  % Replace the dash with a zero
+  stname(abs(stname)==45)='0';
 elseif length(suf(fname,'/'))==18
   stname=fname(strfind(fname,oldext)-6:strfind(fname,oldext)-1);
+  % Remove the dash
+  wd=find(abs(stname)==45);
+  stname=strcat(stname(1:wd-1),stname(wd+1:end));
 else
-  error('I need a valid filename!')
+  error('Supply a valid filename! Remember parsing is past the last slash')
 end
-% Replace the dash with a number
-stname(abs(stname)==45)='0';
 
 % Default output filename, in case you didn't give on
 defval('fnout',NaN)
@@ -201,8 +204,10 @@ function [stdt,STLA,STLO,hdop,vdop,Vbat,minV,Pint,Pext,Prange,cmdrcd,f2up,fupl]=
 % Take care of longer station names...
 if length(stname)==4
   xdig=0;
-elseif length(stname)==6
-  xdig=2;
+elseif length(stname)==5
+  xdig=1;
+else
+  error('Supply a valid filename! See the main body of the function')
 end
 
 % Robustness is increasingly meaning: down to first error
