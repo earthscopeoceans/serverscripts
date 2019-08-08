@@ -17,7 +17,7 @@ set tothere = /u/fjsimons/MERMAID/serverdata/locdata
 # the name for Kobe Uni is 452.112-N-??.tbl and the name for the
 # floats owned by SUSTC is 452.020-P-????.tbl but in the conversion I
 # use P??? for all since the running numbers do not yet overlap 
-set floats = (01 02 03 04 05 06 07 08 09 10 11 12 13 16 17 18 19 20 21 22 23 24 25 0026 0027 0028 0029)
+set floats = (01 02 03 04 05 06 07 08 09 10 11 12 13 16 17 18 19 20 21 22 23 24 25 26 27 28 29)
 
 # Remove the ALL file before making it again
 /bin/rm -f $tothere/all.txt
@@ -25,11 +25,11 @@ set floats = (01 02 03 04 05 06 07 08 09 10 11 12 13 16 17 18 19 20 21 22 23 24 
 # Do them in the loop - watch the treatment of leading zeroes
 foreach float ($floats[*])
      # Individual floats, last 2*30 lines only, use P for all of them
-     tail -60    $fromwhere/452.???-?-$float.tbl  >! $tothere/P0{$float}_030.txt
+     tail -60    $fromwhere/452.???-?-*$float.tbl  >! $tothere/P0{$float}_030.txt
      # Individual floats, complete history, use P for all of them
-     /bin/cp -f  $fromwhere/452.???-?-$float.tbl     $tothere/P0${float}_all.txt
+     /bin/cp -f  $fromwhere/452.???-?-*$float.tbl     $tothere/P0${float}_all.txt
      # Collective files, only their last line
-     tail -1      $fromwhere/452.???-?-$float.tbl >>! $tothere/all.txt
+     tail -1      $fromwhere/452.???-?-*$float.tbl >>! $tothere/all.txt
 end
 
 # Add the two dead ones back in if we took them out? 
