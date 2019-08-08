@@ -3,7 +3,7 @@
 # Makes a copy of the MERMAID server for down-the-line processing
 #
 # Last input from aetimmes-at-princeton.edu, 10/08/2018
-# Last modified by fjsimons-at-alum.mit.edu, 04/24/2019
+# Last modified by fjsimons-at-alum.mit.edu, 08/08/2019
 
 # Where was I, so I can return to it
 set returnto = `pwd`
@@ -16,6 +16,7 @@ set wherevit = /u/fjsimons/MERMAID/serverdata/vitdata
 # And where will the *.tbl files go?
 set wheretbl = /u/fjsimons/MERMAID/serverdata/tbldata
 
+# Do not mess with SCP as you will need to supply passwords.
 # The better solution for setting up a CRON job via passwordless
 # single-command-use SSH keys. Of course the public keys need to be
 # present on the respective servers, and the appropriate commands for
@@ -40,6 +41,14 @@ rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av kobeuni@mermaid.unice.fr
 rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av kobeuni@mermaid.unice.fr:\*.vit $whereto
 rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av kobeuni@mermaid.unice.fr:\*.cmd $whereto
 rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av kobeuni@mermaid.unice.fr:\*.out $whereto
+
+# From SUSTECH at Shenzhen, we just get the relevant data
+#echo "RSYNCING SUSTECH MERMAIDS"
+#rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av xxx@yyy:\*.MER $whereto
+#rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av xxx@yyy:\*.LOG $whereto
+#rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av xxx@yyy:\*.vit $whereto
+#rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av xxx@yyy:\*.cmd $whereto
+#rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av xxx@yyy:\*.out $whereto
 
 # Then, go into the copied directory and use GIT to ink it in
 cd $whereto
