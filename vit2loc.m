@@ -18,10 +18,27 @@ function [stdt,STLA,STLO]=vit2loc(vitdat,vitlat,vitlon)
 % STLA        A decimal latitude
 % STLO        A decimal longitude
 %
-% Last modified by fjsimons-at-alum.mit.edu, 04/24/2019 
+% EXAMPLE:
+%
+%% Given the location of our Guyot Hall Geodetic station
+%%  N40°20'44.9220"  W74°39'17.0530"
+% dg1='N40';            dg2='W74';
+% mn1=20+44.9220/60; mn2=39+17.0530/60;
+% [stdt,STLA,STLO]=vit2loc('2019-06-13T00:00:00',...
+%             sprintf('%sdeg%6.3fmn',dg1,mn1),...
+%             sprintf('%sdeg%6.3fmn',dg2,mn2))
+%
+% SEE ALSO:
+%
+% GUYOTPHYSICS
+%
+% TESTED ON 9.0.0.341360
+%
+% Last modified by fjsimons-at-alum.mit.edu, 06/13/2019
 
 % Replace the T by a space
 vitdat(strfind(vitdat,'T'))=32;
+% DATETIME must exist! Only past a certain release
 stdt=datetime(datestr(vitdat),'TimeZone','UTC');
 
 % Latitude parsing
