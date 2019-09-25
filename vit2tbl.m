@@ -41,7 +41,7 @@ function varargout=vit2tbl(fname,fnout)
 %
 % Compile using mcc -m vit2tbl.m
 % 
-% Last modified by fjsimons-at-alum.mit.edu, 08/08/2019
+% Last modified by fjsimons-at-alum.mit.edu, 08/09/2019
 
 % Default input filename, which MUST end in .vit
 defval('fname','/u/fjsimons/MERMAID/serverdata/vitdata/452.020-P-08.vit')
