@@ -20,16 +20,15 @@ function varargout=vit2tbl(fname,fnout)
 % NOTE:
 %
 % *.vit files take the following form entries
-% 20180409-08h33mn01: >>> BUOY 01 2018-04-09T08:33:02 <<<
-% 20180409-08h33mn02: N34deg43.118mn, E135deg17.443mn
-% 20180409-08h33mn03: hdop 1.270, vdop 2.150
-% 20180409-08h33mn05: Vbat 15425mV (min 14962mV)
-% 20180409-08h33mn08: Pint 91211Pa
-% 20180409-08h33mn09: Pext -2147483648mbar (range -1mbar)
-% 20180409-08h33mn45: 7 cmd(s) received
-% 20180409-08h33mn52: 1 file(s) to upload
-% 20180409-08h34mn37: 1 file(s) uploaded
-% 20180409-08h34mn44: <<<<<<<<<<<<<<< Bye >>>>>>>>>>>>>>>
+% 20181111-04h40mn32: >>> BUOY 23 2018-11-11T04:40:30 <<<
+% 20181111-04h40mn36: S24deg00.026mn, W140deg54.402mn
+% 20181111-04h40mn36: hdop 0.620, vdop 1.100
+% 20181111-04h40mn36: Vbat 14652mV (min 13873mV)
+% 20181111-04h40mn39: Pint 79066Pa
+% 20181111-04h40mn40: Pext 295mbar (range 20mbar)
+% 20181111-04h41mn16: 7 cmd(s) received
+% 20181111-04h41mn23: no file to upload
+% 20181111-04h41mn30: <<<<<<<<<<<<<<< Bye >>>>>>>>>>>>>>>
 %
 % NOTE:
 %
@@ -41,10 +40,10 @@ function varargout=vit2tbl(fname,fnout)
 %
 % Compile using mcc -m vit2tbl.m
 % 
-% Last modified by fjsimons-at-alum.mit.edu, 08/09/2019
+% Last modified by fjsimons-at-alum.mit.edu, 10/22/2019
 
 % Default input filename, which MUST end in .vit
-defval('fname','/u/fjsimons/MERMAID/serverdata/vitdata/452.020-P-08.vit')
+defval('fname','/u/fjsimons/MERMAID/serverdata/vitdata/452.020-P-23.vit')
 
 % Old extension, with the dot
 oldext='.vit';
