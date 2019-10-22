@@ -1,5 +1,5 @@
-function [stdt,STLA,STLO]=vit2loc(vitdat,vitlat,vitlon)
-% [stdt,STLA,STLO]=vit2loc(vitdat,vitlat,vitlon)
+function [stdt,STLA,STLO,mapstr]=vit2loc(vitdat,vitlat,vitlon)
+% [stdt,STLA,STLO,mapstr]=vit2loc(vitdat,vitlat,vitlon)
 %
 % Turns *.vit file location string into a decimal lat/lon
 %
@@ -11,6 +11,7 @@ function [stdt,STLA,STLO]=vit2loc(vitdat,vitlat,vitlon)
 %   	     e.g. N33deg35.126mn
 % vitlon     A string from the *.vit file with the last known longitude:
 %            e.g. E134deg57.367mn
+% mapstr     A Google map string to bring up the location at a zoom level
 %
 % OUTPUT:
 %
@@ -34,7 +35,7 @@ function [stdt,STLA,STLO]=vit2loc(vitdat,vitlat,vitlon)
 %
 % TESTED ON 9.0.0.341360
 %
-% Last modified by fjsimons-at-alum.mit.edu, 06/13/2019
+% Last modified by fjsimons-at-alum.mit.edu, 10/22/2019
 
 % Replace the T by a space
 vitdat(strfind(vitdat,'T'))=32;
@@ -52,3 +53,8 @@ pv=pref(vitlon,'deg'); if pv(1)=='W'; ps=-1; else; ps=1; end
 sv=suf(vitlon,'deg'); sv=ps*str2num(sv(1:length(sv)-2));
 pv=ps*str2num(pv(2:end));
 STLO=[pv+sv/60];
+
+if nargout>3
+  zlev=11;
+  mapstr=sprintf('https://www.google.com/maps/@%.3f,%.3f,%iz',STLA,STLO,zlev);
+end
