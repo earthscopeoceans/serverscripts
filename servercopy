@@ -10,6 +10,7 @@ set returnto = `pwd`
 
 # Where will all the data be copied to?
 set whereto =  /u/fjsimons/MERMAID/server
+set wherest =  /u/fjsimons/MERMAID/sustech
 
 # Where will, additionally, all the *.vit files be copied to?
 set wherevit = /u/fjsimons/MERMAID/serverdata/vitdata
@@ -42,13 +43,13 @@ rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av kobeuni@mermaid.unice.fr
 rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av kobeuni@mermaid.unice.fr:\*.cmd $whereto
 rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av kobeuni@mermaid.unice.fr:\*.out $whereto
 
-# From SUSTECH at Shenzhen, we just get the relevant data
+# From SUSTECH at Shenzhen, we just get the relevant data - but right now we get a tar file
 #echo "RSYNCING SUSTECH MERMAIDS"
-#rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av xxx@yyy:\*.MER $whereto
-#rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av xxx@yyy:\*.LOG $whereto
-#rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av xxx@yyy:\*.vit $whereto
-#rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av xxx@yyy:\*.cmd $whereto
-#rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av xxx@yyy:\*.out $whereto
+#rsync -e "ssh -o PubkeyAuthentication=no" -av mermaid@134.175.126.179:\*.MER $wherest
+#rsync -e "ssh -o PubkeyAuthentication=no" -av mermaid@134.175.126.179:\*.LOG $wherest
+#rsync -e "ssh -o PubkeyAuthentication=no" -av mermaid@134.175.126.179:\*.vit $wherest
+#rsync -e "ssh -o PubkeyAuthentication=no" -av mermaid@134.175.126.179:\*.cmd $wherest
+#rsync -e "ssh -o PubkeyAuthentication=no" -av mermaid@134.175.126.179:\*.out $wherest
 
 # Then, go into the copied directory and use GIT to ink it in
 cd $whereto
@@ -75,3 +76,13 @@ end
 
 # Return to where I was
 cd $returnto
+
+
+# After pulling (in a tar file with) vit files, inside vitdata
+# set wherevit = /u/fjsimons/MERMAID/serverdata/vitdata
+# set wheretbl = /u/fjsimons/MERMAID/serverdata/tbldata
+# set sustec = (452.020-P-0026.vit 452.020-P-0027.vit 452.020-P-0028.vit 452.020-P-0029.vit 452.020-P-0030.vit 452.020-P-0031.vit 452.020-P-0032.vit 452.020-P-0033.vit 452.020-P-0034.vit 452.020-P-0035.vit 452.020-P-0036.vit 452.020-P-0037.vit 452.020-P-0038.vit 452.020-P-0039.vit 452.020-P-0040.vit 452.020-P-0041.vit 452.020-P-0042.vit 452.020-P-0043.vit 452.020-P-0044.vit 452.020-P-0045.vit 452.020-P-0046.vit 452.020-P-0047.vit 452.020-P-0048.vit 452.020-P-0049.vit)
+# foreach file ($sustec[*])
+#     echo Processing $wherevit/$file
+#    /u/fjsimons/PROGRAMS/MFILES/mermaid/vit2tbl $wherevit/$file $wheretbl/$file:r.tbl
+# end
