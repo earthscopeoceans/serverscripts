@@ -3,7 +3,7 @@
 # Makes a copy of the MERMAID server for down-the-line processing
 #
 # Last input from aetimmes-at-princeton.edu, 10/08/2018
-# Last modified by fjsimons-at-alum.mit.edu, 08/08/2019
+# Last modified by fjsimons-at-alum.mit.edu, 03/02/2020
 
 # Where was I, so I can return to it
 set returnto = `pwd`
@@ -20,8 +20,8 @@ set wheretbl = /u/fjsimons/MERMAID/serverdata/tbldata
 # Do not mess with SCP as you will need to supply passwords.
 # The better solution for setting up a CRON job via passwordless
 # single-command-use SSH keys. Of course the public keys need to be
-# present on the respective servers, and the appropriate commands for
-# which they are designed need to be locally present - i.e. RRSYNC
+# present on the respective servers, and the appropriate range for
+# which they are designed needs to be identified using RRSYNC. 
 
 # From Princeton at Princeton, we get it all
 echo "RSYNCING PRINCETON MERMAIDS"
@@ -43,13 +43,13 @@ rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av kobeuni@mermaid.unice.fr
 rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av kobeuni@mermaid.unice.fr:\*.cmd $whereto
 rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av kobeuni@mermaid.unice.fr:\*.out $whereto
 
-# From SUSTECH at Shenzhen, we just get the relevant data - but right now we get a tar file
-#echo "RSYNCING SUSTECH MERMAIDS"
-#rsync -e "ssh -o PubkeyAuthentication=no" -av mermaid@134.175.126.179:\*.MER $wherest
-#rsync -e "ssh -o PubkeyAuthentication=no" -av mermaid@134.175.126.179:\*.LOG $wherest
-#rsync -e "ssh -o PubkeyAuthentication=no" -av mermaid@134.175.126.179:\*.vit $wherest
-#rsync -e "ssh -o PubkeyAuthentication=no" -av mermaid@134.175.126.179:\*.cmd $wherest
-#rsync -e "ssh -o PubkeyAuthentication=no" -av mermaid@134.175.126.179:\*.out $wherest
+# From SUSTECH at Shenzhen, we just get the relevant data - store them separately
+echo "RSYNCING SUSTECH MERMAIDS"
+rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av mermaid@134.175.126.179:\*.MER $wherest
+rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av mermaid@134.175.126.179:\*.LOG $wherest
+rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av mermaid@134.175.126.179:\*.vit $wherest
+rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av mermaid@134.175.126.179:\*.cmd $wherest
+rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av mermaid@134.175.126.179:\*.out $wherest
 
 # Then, go into the copied directory and use GIT to ink it in
 cd $whereto
@@ -76,7 +76,6 @@ end
 
 # Return to where I was
 cd $returnto
-
 
 # After pulling (in a tar file with) vit files, inside vitdata
 # set wherevit = /u/fjsimons/MERMAID/serverdata/vitdata
