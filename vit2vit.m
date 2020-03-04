@@ -45,35 +45,35 @@ begs.P024=datetime(2018,09,13,08,53,23,'TimeZone','UTC'); %C
 begs.P025=datetime(2018,09,14,11,58,11,'TimeZone','UTC'); %C
 
 % SUSTECH MERMAIDS
-begs.P026=datetime(2019,08,06,02,53,00,'TimeZone','UTC');
-begs.P027=datetime(2019,08,06,15,56,04,'TimeZone','UTC');
-begs.P028=datetime(2019,08,07,05,24,02,'TimeZone','UTC');
-begs.P029=datetime(2019,08,07,19,38,04,'TimeZone','UTC');
+begs.P0026=datetime(2019,08,06,02,53,00,'TimeZone','UTC');
+begs.P0027=datetime(2019,08,06,15,56,04,'TimeZone','UTC');
+begs.P0028=datetime(2019,08,07,05,24,02,'TimeZone','UTC');
+begs.P0029=datetime(2019,08,07,19,38,04,'TimeZone','UTC');
 % absent 30
-begs.P031=datetime(2019,08,08,10,53,04,'TimeZone','UTC');
-begs.P032=datetime(2019,08,09,04,14,04,'TimeZone','UTC');
-begs.P033=datetime(2019,08,10,09,42,04,'TimeZone','UTC');
-begs.P034=datetime(2019,08,12,19,44,03,'TimeZone','UTC');
-begs.P035=datetime(2019,08,13,16,21,04,'TimeZone','UTC');
-begs.P036=datetime(2019,08,14,20,56,01,'TimeZone','UTC');
-begs.P037=datetime(2019,08,16,23,53,04,'TimeZone','UTC');
-begs.P038=datetime(2019,08,17,10,58,04,'TimeZone','UTC');
-begs.P039=datetime(2019,08,17,22,06,03,'TimeZone','UTC');
-begs.P040=datetime(2019,08,18,10,57,03,'TimeZone','UTC');
-begs.P041=datetime(2019,08,19,09,30,05,'TimeZone','UTC');
-begs.P042=datetime(2019,08,19,19,27,02,'TimeZone','UTC');
-begs.P043=datetime(2019,08,20,06,15,00,'TimeZone','UTC');
-begs.P044=datetime(2019,08,21,06,19,01,'TimeZone','UTC');
-begs.P045=datetime(2019,08,21,17,44,04,'TimeZone','UTC');
-begs.P046=datetime(2019,08,22,04,22,03,'TimeZone','UTC');
-begs.P047=datetime(2019,08,22,17,14,04,'TimeZone','UTC');
-begs.P048=datetime(2019,08,24,18,03,01,'TimeZone','UTC');
-begs.P049=datetime(2019,08,24,18,49,00,'TimeZone','UTC');
+begs.P0031=datetime(2019,08,08,10,53,04,'TimeZone','UTC');
+begs.P0032=datetime(2019,08,09,04,14,04,'TimeZone','UTC');
+begs.P0033=datetime(2019,08,10,09,42,04,'TimeZone','UTC');
+begs.P0034=datetime(2019,08,12,19,44,03,'TimeZone','UTC');
+begs.P0035=datetime(2019,08,13,16,21,04,'TimeZone','UTC');
+begs.P0036=datetime(2019,08,14,20,56,01,'TimeZone','UTC');
+begs.P0037=datetime(2019,08,16,23,53,04,'TimeZone','UTC');
+begs.P0038=datetime(2019,08,17,10,58,04,'TimeZone','UTC');
+begs.P0039=datetime(2019,08,17,22,06,03,'TimeZone','UTC');
+begs.P0040=datetime(2019,08,18,10,57,03,'TimeZone','UTC');
+begs.P0041=datetime(2019,08,19,09,30,05,'TimeZone','UTC');
+begs.P0042=datetime(2019,08,19,19,27,02,'TimeZone','UTC');
+begs.P0043=datetime(2019,08,20,06,15,00,'TimeZone','UTC');
+begs.P0044=datetime(2019,08,21,06,19,01,'TimeZone','UTC');
+begs.P0045=datetime(2019,08,21,17,44,04,'TimeZone','UTC');
+begs.P0046=datetime(2019,08,22,04,22,03,'TimeZone','UTC');
+begs.P0047=datetime(2019,08,22,17,14,04,'TimeZone','UTC');
+begs.P0048=datetime(2019,08,24,18,03,01,'TimeZone','UTC');
+begs.P0049=datetime(2019,08,24,18,49,00,'TimeZone','UTC');
 
 % KOBE MERMAIDS
-begs.P050=datetime(2019,08,11,21,19,03,'TimeZone','UTC');
+begs.P0050=datetime(2019,08,11,21,19,03,'TimeZone','UTC');
 % absent 051
-begs.P052=datetime(2019,08,16,01,56,05,'TimeZone','UTC'); 
-begs.P053=datetime(2019,08,18,22,48,04,'TimeZone','UTC');
-begs.P054=datetime(2019,08,20,18,14,05,'TimeZone','UTC');
+begs.P0052=datetime(2019,08,16,01,56,05,'TimeZone','UTC'); 
+begs.P0053=datetime(2019,08,18,22,48,04,'TimeZone','UTC');
+begs.P0054=datetime(2019,08,20,18,14,05,'TimeZone','UTC');
 
