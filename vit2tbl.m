@@ -6,6 +6,7 @@ function varargout=vit2tbl(fname,fnout)
 % (One would start with SERVERCOPY sync from our receiving server)
 % (SERVERCOPY now includes the compiled version of VIT2TBL))
 % (One would end with copying the output to our web server using VITEXPORT)
+% (SERVERCOPY now includes the compiled version of VIT2TBL))
 % (One would read those files off the Google Maps API on www.earthscopeoceans.org)
 %
 % INPUT:
@@ -40,7 +41,7 @@ function varargout=vit2tbl(fname,fnout)
 %
 % Compile using mcc -m vit2tbl.m
 % 
-% Last modified by fjsimons-at-alum.mit.edu, 10/22/2019
+% Last modified by fjsimons-at-alum.mit.edu, 03/03/2020
 
 % Default input filename, which MUST end in .vit
 defval('fname','/u/fjsimons/MERMAID/serverdata/vitdata/452.020-P-23.vit')
@@ -49,7 +50,8 @@ defval('fname','/u/fjsimons/MERMAID/serverdata/vitdata/452.020-P-23.vit')
 oldext='.vit';
 
 % Map the file name to a "working name", this requires checking, turns
-% P-08 into P008 and P-0054 into P00054 from filenames of either
+% P-08 into P008 and P-0054 into P00054 from filenames of files like
+% 452.112-N-02.vit
 % 452.020-P-22.vit
 % 452.020-P-0054.vit
 if length(suf(fname,'/'))==16
@@ -62,8 +64,15 @@ elseif length(suf(fname,'/'))==18
   wd=find(abs(stname)==45);
   stname=strcat(stname(1:wd-1),stname(wd+1:end));
 else
+  % If you test this free-style you need to give it './452.112-N-01.vit'
   error('Supply a valid filename! Remember parsing is past the last slash')
 end
+
+% Lines in the *.tbl file will NOT be written when the unit was in the lab,
+% in transit, on the ship, etc, which shouldn't count as being "deployed"
+% The structure fieldname should correspond to stname and the second is
+% the deployment date. Make this ahead of time, and verify carefully.
+begs=vit2vit;
 
 % Default output filename, in case you didn't give on
 defval('fnout',NaN)
@@ -145,8 +154,11 @@ while lred~=-1
     [stdt,STLA,STLO,hdop,vdop,Vbat,minV,Pint,Pext,Prange,cmdrcd,f2up,fupl]=...
 	formconv(jentry,stname);
 
-    % Do not bother if you're in the testing phase, when Pext will be SUPER negative
-    if Pext>-2e6
+    % I think this is where we should consult GEBCO and print it out also
+
+    % Do not bother if you're in the testing phase, when Pext will be SUPER negative,
+    % or when the unit is known to not have been deployed yet
+    if Pext>-2e6 & stdt>=begs.(stname)
       % Write one line in the new file, if the data are not corrupted...
       fprintf(fout,fmtout,...
 	      stname,stdt,STLA,STLO,hdop,vdop,Vbat,minV,Pint,Pext,Prange,cmdrcd,f2up,fupl);
