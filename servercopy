@@ -1,9 +1,11 @@
 #!/bin/tcsh
 #
-# Makes a copy of the MERMAID server for down-the-line processing
+# Makes a copy of the MERMAID server and pushes the metadata in
+# processed form to the server. This comprises rsyncing data, running
+# VIT2TBL for location organization and VITEXPORT for Web publishing.  
 #
 # Last input from aetimmes-at-princeton.edu, 10/08/2018
-# Last modified by fjsimons-at-alum.mit.edu, 03/02/2020
+# Last modified by fjsimons-at-alum.mit.edu, 03/03/2020
 
 # Where was I, so I can return to it
 set returnto = `pwd`
@@ -24,11 +26,11 @@ set wheretbl = /u/fjsimons/MERMAID/serverdata/tbldata
 # which they are designed needs to be identified using RRSYNC. 
 
 # From Princeton at Princeton, we get it all
-echo "RSYNCING PRINCETON MERMAIDS"
+echo "\nRSYNCING PRINCETON MERMAIDS\n"
 rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av mermaid@mermaid.princeton.edu:\*.\* $whereto
 
 # From GeoAzur at Nice, we just get the relevant data 
-echo "RSYNCING NICE MERMAIDS"
+echo "\nRSYNCING NICE MERMAIDS\n"
 rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av eso@mermaid.unice.fr:\*.MER $whereto
 rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av eso@mermaid.unice.fr:\*.LOG $whereto
 rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av eso@mermaid.unice.fr:\*.vit $whereto
@@ -36,7 +38,7 @@ rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av eso@mermaid.unice.fr:\*.
 rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av eso@mermaid.unice.fr:\*.out $whereto
 
 # From KobeUni at GeoAzur at Nice, we just get the relevant data
-echo "RSYNCING KOBE MERMAIDS"
+echo "\nRSYNCING KOBE MERMAIDS\n"
 rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av kobeuni@mermaid.unice.fr:\*.MER $whereto
 rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av kobeuni@mermaid.unice.fr:\*.LOG $whereto
 rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av kobeuni@mermaid.unice.fr:\*.vit $whereto
@@ -44,7 +46,7 @@ rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av kobeuni@mermaid.unice.fr
 rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av kobeuni@mermaid.unice.fr:\*.out $whereto
 
 # From SUSTECH at Shenzhen, we just get the relevant data - store them separately
-echo "RSYNCING SUSTECH MERMAIDS"
+echo "\nRSYNCING SUSTECH MERMAIDS\n"
 rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av mermaid@134.175.126.179:\*.MER $wherest
 rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av mermaid@134.175.126.179:\*.LOG $wherest
 rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av mermaid@134.175.126.179:\*.vit $wherest
@@ -56,8 +58,13 @@ cd $whereto
 git add .
 git commit -m "A whole fresh copy made"
 
+cd $wherest
+git add .
+git commit -m "A whole fresh copy made"
+
 # Then, copy the *vit files separately for extra care
 /bin/cp -u $whereto/*.vit $wherevit
+/bin/cp -u $wherest/*.vit $wherevit
 
 # Make a local backup of that *vit file repository also
 cd $wherevit
@@ -76,12 +83,3 @@ end
 
 # Return to where I was
 cd $returnto
-
-# After pulling (in a tar file with) vit files, inside vitdata
-# set wherevit = /u/fjsimons/MERMAID/serverdata/vitdata
-# set wheretbl = /u/fjsimons/MERMAID/serverdata/tbldata
-# set sustec = (452.020-P-0026.vit 452.020-P-0027.vit 452.020-P-0028.vit 452.020-P-0029.vit 452.020-P-0030.vit 452.020-P-0031.vit 452.020-P-0032.vit 452.020-P-0033.vit 452.020-P-0034.vit 452.020-P-0035.vit 452.020-P-0036.vit 452.020-P-0037.vit 452.020-P-0038.vit 452.020-P-0039.vit 452.020-P-0040.vit 452.020-P-0041.vit 452.020-P-0042.vit 452.020-P-0043.vit 452.020-P-0044.vit 452.020-P-0045.vit 452.020-P-0046.vit 452.020-P-0047.vit 452.020-P-0048.vit 452.020-P-0049.vit)
-# foreach file ($sustec[*])
-#     echo Processing $wherevit/$file
-#    /u/fjsimons/PROGRAMS/MFILES/mermaid/vit2tbl $wherevit/$file $wheretbl/$file:r.tbl
-# end
