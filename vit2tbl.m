@@ -56,12 +56,13 @@ oldext='.vit';
 % 452.020-P-0054.vit
 if length(suf(fname,'/'))==16
   stname=fname(strfind(fname,oldext)-4:strfind(fname,oldext)-1);
-  % Replace the dash with a zero
+  % Replace the dash with a zero, e.g. P022
   stname(abs(stname)==45)='0';
 elseif length(suf(fname,'/'))==18
   stname=fname(strfind(fname,oldext)-6:strfind(fname,oldext)-1);
   % Remove the dash
   wd=find(abs(stname)==45);
+  % Keep the full filename, e.g. P0028
   stname=strcat(stname(1:wd-1),stname(wd+1:end));
 else
   % If you test this free-style you need to give it './452.112-N-01.vit'
