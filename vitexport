@@ -4,7 +4,7 @@
 # runtime-compiled (MCC) version VIT2TBL, to the GEOWEB server
 #
 # Last input from aetimmes-at-princeton.edu, 10/08/2018
-# Last modified by fjsimons-at-alum.mit.edu, 12/03/2020
+# Last modified by fjsimons-at-alum.mit.edu, 01/26/2021
 
 # Where are these being kept?
 set fromwhere = /u/fjsimons/MERMAID/serverdata/tbldata
@@ -16,13 +16,14 @@ set tothere = /u/fjsimons/MERMAID/serverdata/locdata
 # -------------------------------------------------------------------------
 # owned by GeoAzur    452.020-P-??    (6-7)
 # owned by Princeton  452.020-P-??    (8-13, 16-25)
-# owned by Kobe Uni   452.112-N-??   (1-5, 50, 52-54)
-# owned by SUSTC      452.020-P-???? (26-49)
-# owned by SUSTC      452.120-R-???? (58-73)
-# owned by OSEAN      452.210-P-???? (14) 
-# owned by OSEAN      452.020-P-???? (51, 56-57, 64, 84)
-# owned by OSEAN      452.120-R-???? (0, 80, 84)
-# owned by Stanford   465.152-R-???? (1-7)
+# owned by Kobe Uni   452.112-N-??    (1-5)
+# owned by SUSTC      452.020-P-????  (26-49)
+# owned by Kobe Uni   452.020-P-????  (50, 52-54)
+# owned by SUSTC      452.120-R-????  (58-73)
+# owned by OSEAN      452.210-P-????  (14) 
+# owned by OSEAN      452.020-P-????  (51, 56-57, 64, 84)
+# owned by OSEAN      452.120-R-????  (0, 80, 84)
+# owned by Stanford   465.152-R-????  (1-7)
 # -------------------------------------------------------------------------
 # no sign of a any other numbers (15, ...) and 84 is double...
 # 
@@ -38,7 +39,7 @@ set floats = (01 02 03 04 05 \
               06 07 \
               08 09 10 11 12 13    16 17 18 19 20 21 22 23 24 25\
               26 27 28 29    31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49\
-              50 52 53 54)
+              50    52 53 54)
 #             []
 
 # Remove the ALL file before making it again
