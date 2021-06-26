@@ -41,7 +41,7 @@ function varargout=vit2tbl(fname,fnout)
 %
 % Compile using mcc -m vit2tbl.m
 % 
-% Last modified by fjsimons-at-alum.mit.edu, 03/03/2020
+% Last modified by fjsimons-at-alum.mit.edu, 06/25/2021
 
 % Default input filename, which MUST end in .vit
 defval('fname','/u/fjsimons/MERMAID/serverdata/vitdata/452.020-P-23.vit')
@@ -50,7 +50,7 @@ defval('fname','/u/fjsimons/MERMAID/serverdata/vitdata/452.020-P-23.vit')
 oldext='.vit';
 
 % Map the file name to a "working name", this requires checking, turns
-% P-08 into P008 and P-0054 into P00054 from filenames of files like
+% P-08 into P008 and P-0054 into P0054 from filenames of files like
 % 452.112-N-02.vit
 % 452.020-P-22.vit
 % 452.020-P-0054.vit
@@ -108,7 +108,6 @@ lred=0;
 while lred~=-1
   % Read line by line until you find a BEGMARK or hit an ENDMARK
   isbeg=[];
-
   % Reads lines until you hit a begin marker
   while isempty(isbeg)
     lred=fgetl(fin);
@@ -156,13 +155,19 @@ while lred~=-1
 	formconv(jentry,stname);
 
     % I think this is where we should consult GEBCO and print it out also
+    % This is different from the WMS as can be verified here also
+    [z,lon,lat]=gebco(STLO,STLA,2019);
+
+    % BUOY 30 EXAMPLE OF SOMETHING THAT REMAINS EMPTY, GUARD AGAINST IT GRACEFULLY?
 
     % Do not bother if you're in the testing phase, when Pext will be SUPER negative,
     % or when the unit is known to not have been deployed yet
     if Pext>-2e6 & stdt>=begs.(stname)
       % Write one line in the new file, if the data are not corrupted...
       fprintf(fout,fmtout,...
-	      stname,stdt,STLA,STLO,hdop,vdop,Vbat,minV,Pint,Pext,Prange,cmdrcd,f2up,fupl);
+	      stname,datestr(stdt,0),...
+	      STLA,STLO,hdop,vdop,Vbat,minV,Pint,Pext,Prange,cmdrcd,f2up,fupl,...
+	      round(z));
     end
   end
     
@@ -201,13 +206,14 @@ Prange_fmt  ='%5i   ';
 %%%%%%%%%%%%%%%%%%%%%%%%
 cmdrcd_fmt  ='%3i ';
 f2up_fmt    ='%3i ';
+fupl_fmt    ='%3i ';
 % Last one gets a closure
-fupl_fmt    ='%3i\n';
+z_fmt       ='%7i\n';
 
 % Combine all the formats, the current result is:
 % '%s %s %11.6f %11.6f %8.3f %8.3f %5i %5i %5i %12i %5i %3i %3i %3i\n'
 fmt=[stname_fmt,stdt_fmt,STLA_fmt,STLO_fmt,hdop_fmt,vdop_fmt,Vbat_fmt,minV_fmt,Pint_fmt,...
-	   Pext_fmt,Prange_fmt,cmdrcd_fmt,f2up_fmt,fupl_fmt];
+	   Pext_fmt,Prange_fmt,cmdrcd_fmt,f2up_fmt,fupl_fmt,z_fmt];
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ROBUST FORMAT CONVERSION FROM .vit ENTRY TO ONE-LINER FOR .tbl FILE
@@ -217,7 +223,7 @@ function [stdt,STLA,STLO,hdop,vdop,Vbat,minV,Pint,Pext,Prange,cmdrcd,f2up,fupl]=
 if length(stname)==4
   xdig=0;
 elseif length(stname)==5
-  xdig=1;
+  xdig=2;
 else
   error('Supply a valid filename! See the main body of the function')
 end
@@ -225,11 +231,13 @@ end
 % Robustness is increasingly meaning: down to first error
 
 % Now you have one journal entry, and are ready to parse for output
-% FIRST LINE: Time stamp
-vitdat=jentry{1}([33:51]+xdig); % Check this is like: 2018-04-09T08:33:02
+% FIRST LINE: Time stamp % Check this is like: 2018-04-09T08:33:02
+vitdat=jentry{1}([33:51]+xdig);
 % SECOND LINE: latitude and longitude
-vitlat=jentry{2}(21:34); % Check this is like: N34deg43.118mn
-vitlon=jentry{2}(37:51); % Check this is like: E135deg17.443mn
+% Check this is like: N34deg43.118mn
+vitlat=jentry{2}(21:34);
+% Check this is like: E135deg17.443mn
+vitlon=jentry{2}(37:51); 
 
 % Convert these already
 [stdt,STLA,STLO]=vit2loc(vitdat,vitlat,vitlon);
