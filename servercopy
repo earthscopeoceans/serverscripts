@@ -5,7 +5,7 @@
 # VIT2TBL for location organization and VITEXPORT for Web publishing.  
 #
 # Last input from aetimmes-at-princeton.edu, 10/08/2018
-# Last modified by fjsimons-at-alum.mit.edu, 03/03/2020
+# Last modified by fjsimons-at-alum.mit.edu, 06/23/2021
 
 # Where was I, so I can return to it
 set returnto = `pwd`
