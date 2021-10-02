@@ -4,11 +4,14 @@
 # 
 # Written by Joel D. Simon, jdsimon-at-princeton-edu
 # Last modified by Frederik J. Simons, fjsimons-at-princeton-edu
-# July 29th, 2019
+# 8-18-2021
 
 # Take out N-03 as non-existent
 set floatnum = (N-01 N-02 N-04 N-05 P-06 P-07 P-08 P-09 P-10 P-11)
 set floatnum = ($floatnum P-12 P-13 P-16 P-17 P-18 P-19 P-20 P-21 P-22 P-23 P-24 P-25)
+set floatnum = ($floatnum P-0026 P-0027 P-0028 P-0028 P-0029 P-0030 P-0031 P-0032 P-0033 P-0034 P-0035 P-0036)
+set floatnum = ($floatnum P-0037 P-0038 P-0039 P-0040 P-0041 P-0042 P-0043 P-0044 P-0045 P-0046 P-0047 P-0048)
+set floatnum = ($floatnum P-0049 P-0050 P-0051 P-0052 P-0053 P-0054)
 
 set count = 0 
 
@@ -18,8 +21,10 @@ echo ----------------------------------
 
 foreach float ($floatnum[*])
    set perfloat1 = `ls -l $allsac | awk '/'$float'/' | wc -l`
-
    set perfloat2 = `ls $MERMAID/processed/*$float*/*/*.sac | tail -1`
+
+
+#   set perfloat2 = `ls $MERMAID/processed-sustech/*$float*/*/*.sac | tail -1`
     
    if ($#perfloat2 != 0) then
     set lasttime = `basename $perfloat2 | awk '{print substr($0,1,8)}'` 
