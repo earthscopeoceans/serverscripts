@@ -4,9 +4,8 @@ function varargout=vit2tbl(fname,fnout)
 % Reads a MERMAID *.vit file, parses the content, and writes it to *.tbl
 %
 % (One would start with SERVERCOPY sync from our receiving server)
-% (SERVERCOPY now includes the compiled version of VIT2TBL))
+% (SERVERCOPY now includes the compiled version of VIT2TBL)
 % (One would end with copying the output to our web server using VITEXPORT)
-% (SERVERCOPY now includes the compiled version of VIT2TBL))
 % (One would read those files off the Google Maps API on www.earthscopeoceans.org)
 %
 % INPUT:
@@ -41,16 +40,20 @@ function varargout=vit2tbl(fname,fnout)
 %
 % Compile using mcc -m vit2tbl.m
 % 
-% Last modified by fjsimons-at-alum.mit.edu, 06/25/2021
+% Last modified by fjsimons-at-alum.mit.edu, 10/01/2021
 
 % Default input filename, which MUST end in .vit
+defval('fname','/u/fjsimons/MERMAID/serverdata/vitdata/465.152-R-0002.vit')
+defval('fname','/u/fjsimons/MERMAID/serverdata/vitdata/452.020-P-0032.vit')
+defval('fname','/u/fjsimons/MERMAID/serverdata/vitdata/452.112-N-02.vit')
 defval('fname','/u/fjsimons/MERMAID/serverdata/vitdata/452.020-P-23.vit')
+defval('fname','/u/fjsimons/MERMAID/serverdata/vitdata/452.020-P-0026.vit')
 
 % Old extension, with the dot
 oldext='.vit';
 
 % Map the file name to a "working name", this requires checking, turns
-% P-08 into P008 and P-0054 into P0054 from filenames of files like
+% N-02 -> N0002 and P-08 -> P0008 and P-0054 -> P0054 from filenames like
 % 452.112-N-02.vit
 % 452.020-P-22.vit
 % 452.020-P-0054.vit
@@ -58,12 +61,18 @@ if length(suf(fname,'/'))==16
   stname=fname(strfind(fname,oldext)-4:strfind(fname,oldext)-1);
   % Replace the dash with a zero, e.g. P022
   stname(abs(stname)==45)='0';
+  % Stick in the EXTRA zero so all instruments have 5 "digits", e.g. P0022
+  stname=strcat(stname(1),'0',stname(2:end));
+  % But remember the original name was short
+  xdig=0;
 elseif length(suf(fname,'/'))==18
   stname=fname(strfind(fname,oldext)-6:strfind(fname,oldext)-1);
   % Remove the dash
   wd=find(abs(stname)==45);
   % Keep the full filename, e.g. P0028
   stname=strcat(stname(1:wd-1),stname(wd+1:end));
+  % And acknowlegde the original name was long
+  xdig=2;
 else
   % If you test this free-style you need to give it './452.112-N-01.vit'
   error('Supply a valid filename! Remember parsing is past the last slash')
@@ -75,7 +84,7 @@ end
 % the deployment date. Make this ahead of time, and verify carefully.
 begs=vit2vit;
 
-% Default output filename, in case you didn't give on
+% Default output filename, in case you didn't give one
 defval('fnout',NaN)
 if isnan(fnout)
   % Construct output filename for writing
@@ -151,23 +160,32 @@ while lred~=-1
   % wants to at least get down to the sixth line, from seven on it "tries"
   if index>=6
     % Format conversion 
-    [stdt,STLA,STLO,hdop,vdop,Vbat,minV,Pint,Pext,Prange,cmdrcd,f2up,fupl]=...
-	formconv(jentry,stname);
-
+    try
+      [stdt,STLA,STLO,hdop,vdop,Vbat,minV,Pint,Pext,Prange,cmdrcd,f2up,fupl]=...
+	  formconv(jentry,stname,xdig);
+    catch
+      % This could happen when there is NO location in the vit entry,
+      % then just skip
+      Pext=-9e9;
+    end
     % I think this is where we should consult GEBCO and print it out also
     % This is different from the WMS as can be verified here also
-    [z,lon,lat]=gebco(STLO,STLA,2019);
+    % We do not do this yet
+    % [z,lon,lat]=gebco(STLO,STLA,2019);
+
+    % When debugging you'll want a keyboard here
+    % keyboard
 
     % BUOY 30 EXAMPLE OF SOMETHING THAT REMAINS EMPTY, GUARD AGAINST IT GRACEFULLY?
-
     % Do not bother if you're in the testing phase, when Pext will be SUPER negative,
     % or when the unit is known to not have been deployed yet
     if Pext>-2e6 & stdt>=begs.(stname)
       % Write one line in the new file, if the data are not corrupted...
       fprintf(fout,fmtout,...
 	      stname,datestr(stdt,0),...
-	      STLA,STLO,hdop,vdop,Vbat,minV,Pint,Pext,Prange,cmdrcd,f2up,fupl,...
-	      round(z));
+	      STLA,STLO,hdop,vdop,Vbat,minV,Pint,Pext,Prange,cmdrcd,f2up,fupl...
+	      );
+%	      ,round(z));
     end
   end
     
@@ -206,27 +224,23 @@ Prange_fmt  ='%5i   ';
 %%%%%%%%%%%%%%%%%%%%%%%%
 cmdrcd_fmt  ='%3i ';
 f2up_fmt    ='%3i ';
-fupl_fmt    ='%3i ';
 % Last one gets a closure
-z_fmt       ='%7i\n';
+%fupl_fmt    ='%3i ';
+fupl_fmt    ='%3i\n';
+% Last one gets a closure
+%z_fmt       ='%7i\n';
 
 % Combine all the formats, the current result is:
 % '%s %s %11.6f %11.6f %8.3f %8.3f %5i %5i %5i %12i %5i %3i %3i %3i\n'
 fmt=[stname_fmt,stdt_fmt,STLA_fmt,STLO_fmt,hdop_fmt,vdop_fmt,Vbat_fmt,minV_fmt,Pint_fmt,...
-	   Pext_fmt,Prange_fmt,cmdrcd_fmt,f2up_fmt,fupl_fmt,z_fmt];
+	   Pext_fmt,Prange_fmt,cmdrcd_fmt,f2up_fmt,fupl_fmt,...
+           ];
+           %z_fmt];
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ROBUST FORMAT CONVERSION FROM .vit ENTRY TO ONE-LINER FOR .tbl FILE
-function [stdt,STLA,STLO,hdop,vdop,Vbat,minV,Pint,Pext,Prange,cmdrcd,f2up,fupl]=formconv(jentry,stname)
-
-% Take care of longer station names...
-if length(stname)==4
-  xdig=0;
-elseif length(stname)==5
-  xdig=2;
-else
-  error('Supply a valid filename! See the main body of the function')
-end
+function [stdt,STLA,STLO,hdop,vdop,Vbat,minV,Pint,Pext,Prange,cmdrcd,f2up,fupl]=...
+    formconv(jentry,stname,xdig)
 
 % Robustness is increasingly meaning: down to first error
 
