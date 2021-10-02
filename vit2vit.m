@@ -11,38 +11,38 @@ function begs=vit2vit
 % from the *.tbl files from when the instruments were definitely not in the
 % water yet
 %
-% Last modified by fjsimons-at-alum.mit.edu, 03/03/2020
+% Last modified by fjsimons-at-alum.mit.edu, 10/01/2021
 
 % KOBE MERMAIDS
-begs.N001=datetime(2018,12,27,01,07,34,'TimeZone','UTC');
-begs.N002=datetime(2018,12,28,15,49,41,'TimeZone','UTC');
-begs.N003=datetime(2019,01,01,22,39,13,'TimeZone','UTC');
-begs.N004=datetime(2019,01,03,00,29,44,'TimeZone','UTC');
-begs.N005=datetime(2019,01,04,01,05,46,'TimeZone','UTC');
+begs.N0001=datetime(2018,12,27,01,07,34,'TimeZone','UTC');
+begs.N0002=datetime(2018,12,28,15,49,41,'TimeZone','UTC');
+begs.N0003=datetime(2019,01,01,22,39,13,'TimeZone','UTC');
+begs.N0004=datetime(2019,01,03,00,29,44,'TimeZone','UTC');
+begs.N0005=datetime(2019,01,04,01,05,46,'TimeZone','UTC');
 
 % GEOAZUR MERMAIDS
-begs.P006=datetime(2018,06,26,19,15,07,'TimeZone','UTC');
-begs.P007=datetime(2018,06,27,18,40,06,'TimeZone','UTC');
+begs.P0006=datetime(2018,06,26,19,15,07,'TimeZone','UTC');
+begs.P0007=datetime(2018,06,27,18,40,06,'TimeZone','UTC');
 
 % PRINCETON MERMAIDS, deployed by Yann
-begs.P008=datetime(2018,08,05,13,25,04,'TimeZone','UTC');
-begs.P009=datetime(2018,08,06,15,32,50,'TimeZone','UTC');
-begs.P010=datetime(2018,08,07,12,56,16,'TimeZone','UTC');
-begs.P011=datetime(2018,08,09,11,03,12,'TimeZone','UTC');
-begs.P012=datetime(2018,08,10,19,18,49,'TimeZone','UTC');
+begs.P0008=datetime(2018,08,05,13,25,04,'TimeZone','UTC');
+begs.P0009=datetime(2018,08,06,15,32,50,'TimeZone','UTC');
+begs.P0010=datetime(2018,08,07,12,56,16,'TimeZone','UTC');
+begs.P0011=datetime(2018,08,09,11,03,12,'TimeZone','UTC');
+begs.P0012=datetime(2018,08,10,19,18,49,'TimeZone','UTC');
 % PRINCETON MERMAIDS, deployed by Frederik, %C for log-checked
-begs.P013=datetime(2018,08,31,17,02,48,'TimeZone','UTC'); %C
+begs.P0013=datetime(2018,08,31,17,02,48,'TimeZone','UTC'); %C
 % absent 15 and 16
-begs.P016=datetime(2018,09,03,07,11,48,'TimeZone','UTC'); %C
-begs.P017=datetime(2018,09,04,11,04,02,'TimeZone','UTC'); %C
-begs.P018=datetime(2018,09,05,17,39,31,'TimeZone','UTC'); %C
-begs.P019=datetime(2018,09,06,20,11,04,'TimeZone','UTC'); %C
-begs.P020=datetime(2018,09,08,10,38,47,'TimeZone','UTC'); %C
-begs.P021=datetime(2018,09,09,17,43,45,'TimeZone','UTC'); %C
-begs.P022=datetime(2018,09,10,19,09,48,'TimeZone','UTC'); %C
-begs.P023=datetime(2018,09,12,02,15,16,'TimeZone','UTC'); %C
-begs.P024=datetime(2018,09,13,08,53,23,'TimeZone','UTC'); %C
-begs.P025=datetime(2018,09,14,11,58,11,'TimeZone','UTC'); %C
+begs.P0016=datetime(2018,09,03,07,11,48,'TimeZone','UTC'); %C
+begs.P0017=datetime(2018,09,04,11,04,02,'TimeZone','UTC'); %C
+begs.P0018=datetime(2018,09,05,17,39,31,'TimeZone','UTC'); %C
+begs.P0019=datetime(2018,09,06,20,11,04,'TimeZone','UTC'); %C
+begs.P0020=datetime(2018,09,08,10,38,47,'TimeZone','UTC'); %C
+begs.P0021=datetime(2018,09,09,17,43,45,'TimeZone','UTC'); %C
+begs.P0022=datetime(2018,09,10,19,09,48,'TimeZone','UTC'); %C
+begs.P0023=datetime(2018,09,12,02,15,16,'TimeZone','UTC'); %C
+begs.P0024=datetime(2018,09,13,08,53,23,'TimeZone','UTC'); %C
+begs.P0025=datetime(2018,09,14,11,58,11,'TimeZone','UTC'); %C
 
 % SUSTECH MERMAIDS
 begs.P0026=datetime(2019,08,06,02,53,00,'TimeZone','UTC');
@@ -77,3 +77,10 @@ begs.P0052=datetime(2019,08,16,01,56,05,'TimeZone','UTC');
 begs.P0053=datetime(2019,08,18,22,48,04,'TimeZone','UTC');
 begs.P0054=datetime(2019,08,20,18,14,05,'TimeZone','UTC');
 
+% STANFORD PSDMAIDS
+% absent 001
+begs.R0002=datetime(2021,09,29,09,09,05,'TimeZone','UTC');
+begs.R0003=datetime(2021,09,29,09,18,18,'TimeZone','UTC');
+begs.R0004=datetime(2021,09,29,09,23,40,'TimeZone','UTC');
+begs.R0005=datetime(2021,09,29,09,30,34,'TimeZone','UTC');
+begs.R0006=datetime(2021,09,29,09,25,44,'TimeZone','UTC');
