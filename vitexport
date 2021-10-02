@@ -4,7 +4,7 @@
 # runtime-compiled (MCC) version VIT2TBL, to the GEOWEB server
 #
 # Last input from aetimmes-at-princeton.edu, 10/08/2018
-# Last modified by fjsimons-at-alum.mit.edu, 01/26/2021
+# Last modified by fjsimons-at-alum.mit.edu, 06/23/2021
 
 # Where are these being kept?
 set fromwhere = /u/fjsimons/MERMAID/serverdata/tbldata
@@ -27,7 +27,7 @@ set tothere = /u/fjsimons/MERMAID/serverdata/locdata
 # -------------------------------------------------------------------------
 # no sign of a any other numbers (15, ...) and 84 is double...
 # 
-# For now I use P??? for all since the running numbers do not yet overlap. 
+# For now I use P00?? for all since the running numbers do not yet overlap. 
 #
 # Died undeployed: P-30 since 2019-08-07 SUSTEC
 # Died in service: P-07 since 2018-09-11 Geoazur
@@ -50,9 +50,9 @@ set floats = (01 02 03 04 05 \
 # posted here with only three digits total, and always with a P in the front
 foreach float ($floats[*])
      # Individual floats, last 2*30 lines only, use P for all of them
-     tail -60    $fromwhere/452.???-?-*$float.tbl  >! $tothere/P0{$float}_030.txt
+     tail -60    $fromwhere/452.???-?-*$float.tbl  >! $tothere/P00{$float}_030.txt
      # Individual floats, complete history, use P for all of them
-     /bin/cp -f  $fromwhere/452.???-?-*$float.tbl     $tothere/P0${float}_all.txt
+     /bin/cp -f  $fromwhere/452.???-?-*$float.tbl     $tothere/P00${float}_all.txt
      # Collective files, only their last line
      tail -1     $fromwhere/452.???-?-*$float.tbl >>! $tothere/all.txt
      # Collective files, only their first line, need to do  this only once obviously...
