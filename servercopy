@@ -5,16 +5,17 @@
 # VIT2TBL for location organization and VITEXPORT for Web publishing.  
 #
 # Last input from aetimmes-at-princeton.edu, 10/08/2018
-# Last modified by fjsimons-at-alum.mit.edu, 06/23/2021
+# Last modified by fjsimons-at-alum.mit.edu, 10/01/2021
 
 # Where was I, so I can return to it
 set returnto = `pwd`
 
-# Where will all the data be copied to?
+# Where will all the data be copied TO?
 set whereto =  /u/fjsimons/MERMAID/server
 set wherest =  /u/fjsimons/MERMAID/sustech
+set whereps =  /u/fjsimons/MERMAID/psdmaid
 
-# Where will, additionally, all the *.vit files be copied to?
+# Where will, additionally, all the *.VIT files be copied TO?
 set wherevit = /u/fjsimons/MERMAID/serverdata/vitdata
 # And where will the *.tbl files go?
 set wheretbl = /u/fjsimons/MERMAID/serverdata/tbldata
@@ -28,6 +29,10 @@ set wheretbl = /u/fjsimons/MERMAID/serverdata/tbldata
 # From Princeton at Princeton, we get it all
 echo "\nRSYNCING PRINCETON MERMAIDS\n"
 rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av mermaid@mermaid.princeton.edu:\*.\* $whereto
+
+# From Stanford at Princeton, we also get it all
+echo "\nRSYNCING STANFORD MERMAIDS\n"
+rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av psdmaid@mermaid.princeton.edu:\*.\* $whereps
 
 # From GeoAzur at Nice, we just get the relevant data 
 echo "\nRSYNCING NICE MERMAIDS\n"
@@ -62,9 +67,14 @@ cd $wherest
 git add .
 git commit -m "A whole fresh copy made"
 
+cd $whereps
+git add .
+git commit -m "A whole fresh copy made"
+
 # Then, copy the *vit files separately for extra care
 /bin/cp -u $whereto/*.vit $wherevit
 /bin/cp -u $wherest/*.vit $wherevit
+/bin/cp -u $whereps/*.vit $wherevit
 
 # Make a local backup of that *vit file repository also
 cd $wherevit
@@ -75,6 +85,7 @@ git commit -m "A whole fresh copy made"
 set vitfiles = `ls *.vit`
 foreach file ($vitfiles[*])
     echo Processing $wherevit/$file
+    # Only changes the extension even though the station names have been uniformly pentadigitized
    /u/fjsimons/PROGRAMS/MFILES/mermaid/vit2tbl $wherevit/$file $wheretbl/$file:r.tbl
 end
 
