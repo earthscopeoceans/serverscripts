@@ -33,9 +33,9 @@ function [stdt,STLA,STLO,mapstr]=vit2loc(vitdat,vitlat,vitlon)
 %
 % GUYOTPHYSICS
 %
-% TESTED ON 9.0.0.341360
+% TESTED ON 9.0.0.341360 (R2016a)
 %
-% Last modified by fjsimons-at-alum.mit.edu, 10/22/2019
+% Last modified by fjsimons-at-alum.mit.edu, 07/08/2021
 
 % Replace the T by a space
 vitdat(strfind(vitdat,'T'))=32;
