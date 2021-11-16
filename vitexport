@@ -4,7 +4,7 @@
 # runtime-compiled (MCC) version VIT2TBL, to the GEOWEB server
 #
 # Last input from aetimmes-at-princeton.edu, 10/08/2018
-# Last modified by fjsimons-at-alum.mit.edu, 06/23/2021
+# Last modified by fjsimons-at-alum.mit.edu, 10/24/2021
 
 # Where are these being kept?
 set fromwhere = /u/fjsimons/MERMAID/serverdata/tbldata
@@ -27,36 +27,48 @@ set tothere = /u/fjsimons/MERMAID/serverdata/locdata
 # -------------------------------------------------------------------------
 # no sign of a any other numbers (15, ...) and 84 is double...
 # 
-# For now I use P00?? for all since the running numbers do not yet overlap. 
-#
 # Died undeployed: P-30 since 2019-08-07 SUSTEC
 # Died in service: P-07 since 2018-09-11 Geoazur
 # Died in service: N-03 since 2019-01-02 JAMSTEC
 # Died in service: P-34 since 2019-11-16 SUSTC
 # Died in service: P-47 since 2020-03-28 SUSTC
-# So... KOBE \ GEOAZUR \ PRINCETON \ SUSTECH \ KOBE [\ STANFORD]
+#
+# So... KOBE \ GEOAZUR \ PRINCETON \ SUSTECH \ KOBE
+#   ... STANFORD \ SUSTECH
+#
+# Remember NOTHING can follow the continuation symbol on the same line...
+set lettrs = ( N  N  N  N  N \
+               P  P \
+               P  P  P  P  P  P     P  P  P  P  P  P  P  P  P P \
+               P  P  P  P     P  P  P  P  P  P  P  P  P  P  P  P  P  P  P  P  P  P  P \
+               P     P  P  P \
+               R  R  R  R  R  R  R \
+               R  R     R     R    R    R    R      R   R   R)
+
 set floats = (01 02 03 04 05 \
               06 07 \
-              08 09 10 11 12 13    16 17 18 19 20 21 22 23 24 25\
-              26 27 28 29    31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49\
-              50    52 53 54)
-#             []
+              08 09 10 11 12 13    16 17 18 19 20 21 22 23 24 25 \
+              26 27 28 29    31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 \
+              50    52 53 54 \
+              01 02 03 04 05 06 07 \
+              58 59    61    63    65    67    69    71 72 73)
 
 # Remove the ALL file before making it again
 /bin/rm -f $tothere/all.txt
 
-# Do them in the loop - watch the treatment of leading zeroes which in
-# VIT2TBL and in the tables themselves is different from how they get
-# posted here with only three digits total, and always with a P in the front
+# Do them in the loop - watch the treatment of leading zeroes and letters
+@ index = 0
 foreach float ($floats[*])
-     # Individual floats, last 2*30 lines only, use P for all of them
-     tail -60    $fromwhere/452.???-?-*$float.tbl  >! $tothere/P00{$float}_030.txt
-     # Individual floats, complete history, use P for all of them
-     /bin/cp -f  $fromwhere/452.???-?-*$float.tbl     $tothere/P00${float}_all.txt
+     @ index += 1
+     set letter = $lettrs[$index]
+     # Individual floats, last 2*30 lines only
+     tail -60    $fromwhere/???.???-$letter-*$float.tbl  >! $tothere/{$letter}00{$float}_030.txt
+     # Individual floats, complete history
+     /bin/cp -f  $fromwhere/???.???-$letter-*$float.tbl     $tothere/{$letter}00${float}_all.txt
      # Collective files, only their last line
-     tail -1     $fromwhere/452.???-?-*$float.tbl >>! $tothere/all.txt
+     tail -1     $fromwhere/???.???-$letter-*$float.tbl >>! $tothere/all.txt
      # Collective files, only their first line, need to do  this only once obviously...
-     # head -1 -q  $fromwhere/452.???-?-*$float.tbl >>! $tothere/misalo.txt
+     head -1 -q  $fromwhere/???.???-?-*$float.tbl >>! $tothere/misalo.txt
 end
 
 # Then all of those get pushed on to the server via a passwordless
