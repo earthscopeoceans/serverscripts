@@ -1,12 +1,11 @@
 function varargout=vit2tbl(fname,fnout)
 % jentry=VIT2TBL(fname,fnout)
 %
-% Reads a MERMAID *.vit file, parses the content, and writes it to *.tbl
+% Reads a MERMAID *.vit file, parses the content, and writes it to *.tbl.
+% Requires VIT2VIT which contains float launch dates.
 %
-% (One would start with SERVERCOPY sync from our receiving server)
-% (SERVERCOPY now includes the compiled version of VIT2TBL)
-% (One would end with copying the output to our web server using VITEXPORT)
-% (One would read those files off the Google Maps API on www.earthscopeoceans.org)
+% (The compiled version VIT2TBL is run from SERVERCOPY which syncs from our
+% receiving server and copies the output to our web server using VITEXPORT)
 %
 % INPUT:
 %
@@ -40,7 +39,7 @@ function varargout=vit2tbl(fname,fnout)
 %
 % Compile using mcc -m vit2tbl.m
 % 
-% Last modified by fjsimons-at-alum.mit.edu, 10/01/2021
+% Last modified by fjsimons-at-alum.mit.edu, 10/19/2021
 
 % Default input filename, which MUST end in .vit
 defval('fname','/u/fjsimons/MERMAID/serverdata/vitdata/465.152-R-0002.vit')
@@ -57,6 +56,7 @@ oldext='.vit';
 % 452.112-N-02.vit
 % 452.020-P-22.vit
 % 452.020-P-0054.vit
+% 456.152-R-0001.vit
 if length(suf(fname,'/'))==16
   stname=fname(strfind(fname,oldext)-4:strfind(fname,oldext)-1);
   % Replace the dash with a zero, e.g. P022
