@@ -4,7 +4,7 @@
 # runtime-compiled (MCC) version VIT2TBL, to the GEOWEB server
 #
 # Last input from aetimmes-at-princeton.edu, 10/08/2018
-# Last modified by fjsimons-at-alum.mit.edu, 06/27/2022
+# Last modified by fjsimons-at-alum.mit.edu, 07/01/2022
 
 # Where are these being kept?
 set fromwhere = /u/fjsimons/MERMAID/serverdata/tbldata
@@ -33,7 +33,7 @@ set tothere = /u/fjsimons/MERMAID/serverdata/locdata
 # Died in service: N-03 since 2019-01-02 JAMSTEC
 # Died in service: P-34 since 2019-11-16 SUSTC
 # Died in service: P-47 since 2020-03-28 SUSTC
-# Died in service: R-06 since 2021-10-08 STANFORD
+# Died in service: R-06 since 2021-10-08 STANFORD (spectral)
 # Died exhausted:  R-50 since 2021-07-26 JAMSTEC (tsunami)
 #
 # So... KOBE \ GEOAZUR \ PRINCETON \ SUSTECH \ KOBE
