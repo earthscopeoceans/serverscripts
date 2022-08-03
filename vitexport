@@ -28,13 +28,17 @@ set tothere = /u/fjsimons/MERMAID/serverdata/locdata
 # -------------------------------------------------------------------------
 # no sign of a any other numbers (15, ...) and 84 is double...
 # 
-# Died undeployed: P-30 since 2019-08-07 SUSTEC
 # Died in service: P-07 since 2018-09-11 Geoazur
+# Died exhausted:  P-08 since 2022-05-14 Princeton after 322 surfacings and 994 SAC file
+# Died undeployed: P-30 since 2019-08-07 SUSTEC
 # Died in service: N-03 since 2019-01-02 JAMSTEC
 # Died in service: P-34 since 2019-11-16 SUSTC
 # Died in service: P-47 since 2020-03-28 SUSTC
+# Died in service: R-01 since 2022-05-11 STANFORD (spectral)
 # Died in service: R-06 since 2021-10-08 STANFORD (spectral)
 # Died exhausted:  R-50 since 2021-07-26 JAMSTEC (tsunami)
+# Died in service: P-65 since 2022-05-24 SUSTC (in Taiwan EEZ)
+# Died captively:  P-67 since 2022-02-20 SUSTC (in Philippines EEZ)
 #
 # So... KOBE \ GEOAZUR \ PRINCETON \ SUSTECH \ KOBE
 #   ... STANFORD \ SUSTECH
