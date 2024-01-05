@@ -4,7 +4,7 @@
 # runtime-compiled (MCC) version VIT2TBL, to the GEOWEB server
 #
 # Last input from aetimmes-at-princeton.edu, 10/08/2018
-# Last modified by fjsimons-at-alum.mit.edu, 07/01/2022
+# Last modified by fjsimons-at-alum.mit.edu, 01/05/2024
 
 # Where are these being kept?
 set fromwhere = /u/fjsimons/MERMAID/serverdata/tbldata
@@ -17,31 +17,33 @@ set tothere = /u/fjsimons/MERMAID/serverdata/locdata
 # owned by GeoAzur    452.020-P-??    (6-7)
 # owned by Princeton  452.020-P-??    (8-13, 16-25)
 # owned by Kobe Uni   452.112-N-??    (1-5)
-# owned by SUSTC      452.020-P-????  (26-49)
+# owned by SUSTECH    452.020-P-????  (26-49)
 # owned by Kobe Uni   452.020-P-????  (50, 52-54)
-# owned by SUSTC      452.120-R-????  (58-73)
 # owned by OSEAN      452.210-P-????  (14) 
 # owned by OSEAN      452.020-P-????  (51, 56-57, 64, 84)
 # owned by OSEAN      452.120-R-????  (0, 80, 84)
 # owned by Stanford   465.152-R-????  (1-7)
-# owned by SUSTECH    465.152-R-????  (58-59, 61, 63, 65, 67, 69, 71-73)
+# owned by SUSTECH    452.120-R-????  (58-69, 71-73)
+# owned by SUSTECH    452.120-S-????  (70, 81-82, 85-94)
+
 # -------------------------------------------------------------------------
-# no sign of a any other numbers (15, ...) and 84 is double...
 # 
 # Died in service: P-07 since 2018-09-11 Geoazur
-# Died exhausted:  P-08 since 2022-05-14 Princeton after 322 surfacings and 994 SAC files
-# Died exhausted:  P-09 since 2023-08-31 Princeton after XXX surfacings and YYY SAC files
-# Died undeployed: P-30 since 2019-08-07 SUSTEC
+# Died in service: P-08 since 2022-05-14 Princeton after 322 surfacings and 994 SAC files
+# Died exhausted/bottom:  P-09 since 2023-08-31 Princeton after ~350 surfacings and 523 SAC files
+# Died undeployed: P-30 since 2019-08-07 SUSTECH
 # Died in service: N-03 since 2019-01-02 JAMSTEC
-# Died in service: P-34 since 2019-11-16 SUSTC
-# Died in service: P-43 since 2022-07-06 SUSTC
-# Died in service: P-47 since 2020-03-28 SUSTC
+# Died in service: P-34 since 2019-11-16 SUSTECH
+# Died in service: P-43 since 2022-07-06 SUSTECH
+# Died in service: P-47 since 2020-03-28 SUSTECH
+# Died undeployed: P-60 since 2020-07-24 SUSTECH
 # Died in service: R-01 since 2022-05-11 STANFORD (spectral)
 # Died in service: R-06 since 2021-10-08 STANFORD (spectral)
-# Died exhausted:  R-50 since 2021-07-26 JAMSTEC (tsunami)
-# Died in service: P-63 since 2022-09-21 SUSTC
-# Died in service: P-65 since 2022-05-24 SUSTC (in Taiwan EEZ)
-# Died captively:  P-67 since 2022-02-20 SUSTC (in Philippines EEZ)
+# Died in service: R-50 since 2021-07-26 JAMSTEC (tsunami)
+# Died in service: R-52 since 2023-03-02 JAMSTEC
+# Died in service: R-63 since 2022-09-21 SUSTECH
+# Died in service: P-65 since 2022-05-24 SUSTECH (in Taiwan EEZ)
+# Died captively : P-67 since 2022-02-20 SUSTECH (in Philippines EEZ)
 #
 # So... KOBE \ GEOAZUR \ PRINCETON \ SUSTECH \ KOBE
 #   ... STANFORD \ SUSTECH
