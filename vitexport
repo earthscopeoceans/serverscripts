@@ -56,7 +56,7 @@ set lettrs = ( N  N  N  N  N \
                P  P  P  P     P  P  P  P  P  P  P  P  P  P  P  P  P  P  P  P  P  P  P \
                P     P  P  P \
                R  R  R  R  R  R  R \
-               R  R     R     R    R    R    R      R   R   R)
+               R  R     R  R  R    R  R  R    R      R   R   R)
 # Remember we're trying to capture the two- and four-digits conventions in one loop
 set floats = (01 02 03 04 05 \
               06 07 \
