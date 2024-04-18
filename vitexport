@@ -4,7 +4,7 @@
 # runtime-compiled (MCC) version VIT2TBL, to the GEOWEB server
 #
 # Last input from aetimmes-at-princeton.edu, 10/08/2018
-# Last modified by fjsimons-at-alum.mit.edu, 01/14/2024
+# Last modified by fjsimons-at-alum.mit.edu, 04/18/2024
 
 # Where are these being kept?
 set fromwhere = /u/fjsimons/MERMAID/serverdata/tbldata
@@ -25,7 +25,8 @@ set tothere = /u/fjsimons/MERMAID/serverdata/locdata
 # owned by Stanford   465.152-R-????  (1-7)
 # owned by SUSTECH    452.120-R-????  (58-69, 71-73)
 # owned by SUSTECH    452.120-S-????  (70, 81-82, 85-94)
-# owned by JAMSTEC    467.174-T-????  (100, 101, 102)
+# owned by JAMSTEC    467.174-T-????  (100, 101)
+# owned by JAMSTEC    467.164-T-????  (102)
 
 # -------------------------------------------------------------------------
 # 
@@ -58,7 +59,7 @@ set lettrs = ( N  N  N  N  N \
                P     P  P  P \
                R  R  R  R  R  R  R \
                R  R     R  R  R    R  R  R    R      R   R   R \
-	       T)
+	       T  T  T)
 # Remember we're trying to capture the two- and four-digits conventions in one loop
 set floats = (01 02 03 04 05 \
               06 07 \
@@ -67,7 +68,7 @@ set floats = (01 02 03 04 05 \
               50    52 53 54 \
               01 02 03 04 05 06 07 \
               58 59    61 62 63    65 66 67    69    71 72 73 \
-	      100)
+	      100 101 102)
 
 # Remove the ALL file before making it again
 /bin/rm -f $tothere/all.txt
@@ -77,10 +78,12 @@ set floats = (01 02 03 04 05 \
 foreach float ($floats[*])
      @ index += 1
      set letter = $lettrs[$index]
+     # Make the proper float including the leading zero(s)
+     set ifloat = `printf "%4.4i" $float`
      # Individual floats, last 2*30 lines only
-     tail -60    $fromwhere/???.???-$letter-*$float.tbl  >! $tothere/{$letter}00{$float}_030.txt
+     tail -60    $fromwhere/???.???-$letter-*$float.tbl  >! $tothere/{$letter}{$ifloat}_030.txt
      # Individual floats, complete history
-     /bin/cp -f  $fromwhere/???.???-$letter-*$float.tbl     $tothere/{$letter}00${float}_all.txt
+     /bin/cp -f  $fromwhere/???.???-$letter-*$float.tbl     $tothere/{$letter}${ifloat}_all.txt
      # Collective files, only their last line
      tail -1     $fromwhere/???.???-$letter-*$float.tbl >>! $tothere/all.txt
      # Collective files, only their first line, need to do this only once obviously...
