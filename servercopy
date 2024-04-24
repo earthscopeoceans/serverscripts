@@ -5,7 +5,7 @@
 # VIT2TBL for location organization and VITEXPORT for Web publishing.  
 #
 # Last input from aetimmes-at-princeton.edu, 10/08/2018
-# Last modified by fjsimons-at-alum.mit.edu, 10/01/2021
+# Last modified by fjsimons-at-alum.mit.edu, 01/15/2022
 
 # Where was I, so I can return to it
 set returnto = `pwd`
@@ -57,6 +57,7 @@ rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av mermaid@134.175.126.179:
 rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av mermaid@134.175.126.179:\*.vit $wherest
 rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av mermaid@134.175.126.179:\*.cmd $wherest
 rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av mermaid@134.175.126.179:\*.out $wherest
+rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av mermaid@134.175.126.179:\*.BIN $wherest
 
 # Then, go into the copied directory and use GIT to ink it in
 cd $whereto
@@ -81,6 +82,9 @@ cd $wherevit
 git add .
 git commit -m "A whole fresh copy made"
 
+# Alternative is to use the run_vit2tbl version but then how to pass arguments to it?
+setenv LD_LIBRARY_PATH .:$MCRROOT/runtime/glnxa64:$MCRROOT/bin/glnxa64:$MCRROOT/sys/os/glnxa64:$MCRROOT/sys/opengl/lib/glnxa64
+
 # And then these *.vit files need to be converted to *.tbl files via a MATLAB precompiled code
 set vitfiles = `ls *.vit`
 foreach file ($vitfiles[*])
@@ -88,6 +92,9 @@ foreach file ($vitfiles[*])
     # Only changes the extension even though the station names have been uniformly pentadigitized
    /u/fjsimons/PROGRAMS/MFILES/mermaid/vit2tbl $wherevit/$file $wheretbl/$file:r.tbl
 end
+
+# Do not forget to unset it!
+unsetenv LD_LIBRARY_PATH
 
 # And these *.tbl files then need to be pushed/synced onto GEOWEB using this script
 /u/fjsimons/PROGRAMS/UFILES/vitexport
