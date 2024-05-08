@@ -11,7 +11,7 @@ function begs=vit2vit
 %
 % begs   A structure array with MERMAID name and deployment date
 %
-% Last modified by fjsimons-at-alum.mit.edu, 10/01/2021
+% Last modified by fjsimons-at-alum.mit.edu, 04/18/2024
 
 % KOBE MERMAIDS
 begs.N0001=datetime(2018,12,27,01,07,34,'TimeZone','UTC');
@@ -86,21 +86,25 @@ begs.R0005=datetime(2021,09,29,09,30,32,'TimeZone','UTC');
 begs.R0006=datetime(2021,09,29,09,25,43,'TimeZone','UTC');
 begs.R0007=datetime(2021,09,29,09,20,55,'TimeZone','UTC');
 
-% SUSTECH PSDMAIDS
+% SUSTECH MERMAIDS
 begs.R0058=datetime(2021,05,18,12,49,40,'TimeZone','UTC');
 begs.R0059=datetime(2021,05,11,22,42,32,'TimeZone','UTC');
 % absent 60
 begs.R0061=datetime(2021,05,10,23,10,04,'TimeZone','UTC');
-% absent 62
+begs.R0062=datetime(2023,07,08,19,58,08,'TimeZone','UTC');
 begs.R0063=datetime(2021,05,01,23,53,47,'TimeZone','UTC');
 % absent 64
 begs.R0065=datetime(2021,05,01,10,02,34,'TimeZone','UTC');
-% absent 66
+begs.R0066=datetime(2023,07,01,08,26,49,'TimeZone','UTC');
 begs.R0067=datetime(2021,05,11,10,09,21,'TimeZone','UTC');
-% absent 68 % 69 is special?
+% absent 68
 begs.R0069=datetime(2021,07,29,12,26,29,'TimeZone','UTC');
 % absent 70
 begs.R0071=datetime(2021,05,03,09,13,45,'TimeZone','UTC');
 begs.R0072=datetime(2021,05,01,01,26,15,'TimeZone','UTC');
 begs.R0073=datetime(2021,05,12,11,34,25,'TimeZone','UTC');
 
+% JAMSTEC MERMAIDS
+begs.T0100=datetime(2023,06,20,06,24,32,'TimeZone','UTC');
+begs.T0101=datetime(2023,06,20,06,25,42,'TimeZone','UTC');
+begs.T0102=datetime(2023,06,20,06,33,02,'TimeZone','UTC');
