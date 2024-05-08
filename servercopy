@@ -5,7 +5,7 @@
 # VIT2TBL for location organization and VITEXPORT for Web publishing.  
 #
 # Last input from aetimmes-at-princeton.edu, 10/08/2018
-# Last modified by fjsimons-at-alum.mit.edu, 01/15/2022
+# Last modified by fjsimons-at-alum.mit.edu, 05/07/2024
 
 # Where was I, so I can return to it
 set returnto = `pwd`
@@ -14,6 +14,7 @@ set returnto = `pwd`
 set whereto =  /u/fjsimons/MERMAID/server
 set wherest =  /u/fjsimons/MERMAID/sustech
 set whereps =  /u/fjsimons/MERMAID/psdmaid
+set wherejp =  /u/fjsimons/MERMAID/moby
 
 # Where will, additionally, all the *.VIT files be copied TO?
 set wherevit = /u/fjsimons/MERMAID/serverdata/vitdata
@@ -59,7 +60,13 @@ rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av mermaid@134.175.126.179:
 rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av mermaid@134.175.126.179:\*.out $wherest
 rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av mermaid@134.175.126.179:\*.BIN $wherest
 
-# Then, go into the copied directory and use GIT to ink it in
+# From JAMSTEC at CLS, we just get the relevant data - by LFTP MIRROR instead of RRSYNC
+set upass1  = `cat /u/fjsimons/EarthScopeOceans/CLS/Preparation/mermaid_0101`
+set upass2  = `cat /u/fjsimons/EarthScopeOceans/CLS/Preparation/mermaid_0102`
+lftp -u $upass1 -e "lcd '$wherejp' ; mirror -c -f *.vit ; mirror -c -f *.MER ; mirror -c -f *.BIN ; mirror -c -f *.cmd ; mirror -c -f *.out ; mirror -c -f *.S61 ; quit;" sftp://iridium-rudics.cls.fr
+lftp -u $upass2 -e "lcd '$wherejp' ; mirror -c -f *.vit ; mirror -c -f *.MER ; mirror -c -f *.BIN ; mirror -c -f *.cmd ; mirror -c -f *.out ; mirror -c -f *.S61 ; quit;" sftp://iridium-rudics.cls.fr
+
+# Then, go into the copied directories and use GIT to ink it in
 cd $whereto
 git add .
 git commit -m "A whole fresh copy made"
@@ -72,10 +79,15 @@ cd $whereps
 git add .
 git commit -m "A whole fresh copy made"
 
+cd $wherejp
+git add .
+git commit -m "A whole fresh copy made"
+
 # Then, copy the *vit files separately for extra care
 /bin/cp -u $whereto/*.vit $wherevit
 /bin/cp -u $wherest/*.vit $wherevit
 /bin/cp -u $whereps/*.vit $wherevit
+/bin/cp -u $wherejp/*.vit $wherevit
 
 # Make a local backup of that *vit file repository also
 cd $wherevit
