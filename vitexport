@@ -31,8 +31,11 @@ set tothere = /u/fjsimons/MERMAID/serverdata/locdata
 # -------------------------------------------------------------------------
 # 
 # Died in service: P-07 since 2018-09-11 Geoazur
-# Died in service: P-08 since 2022-05-14 Princeton after 322 surfacings and 994 SAC files
-# Died exhausted/bottom: P-09 since 2023-08-31 Princeton after ~350 surfacings and 523 SAC files
+# Died in service: P-08 since 2022-05-14 Princeton after 322 surfacings and  994 SAC files
+# Died in service: P-09 since 2023-08-31 Princeton after 350 surfacings and  523 SAC files
+# Died in service: P-10 since 2024-12-11 Princeton after                    1302 SAC files
+# Died in service: P-12 since 2024-11-04 Princeton after                     346 SAC files
+# Died in service: P-22 since 2025-01-09 Princeton after                    1366 SAC files
 # Died undeployed: P-30 since 2019-08-07 SUSTECH
 # Died in service: N-03 since 2019-01-02 JAMSTEC
 # Died in service: P-34 since 2019-11-16 SUSTECH
