@@ -30,26 +30,40 @@ set tothere = /u/fjsimons/MERMAID/serverdata/locdata
 
 # -------------------------------------------------------------------------
 # 
+# Died in service: N-02 since 2024-09-29 JAMSTEC
 # Died in service: P-07 since 2018-09-11 Geoazur
 # Died in service: P-08 since 2022-05-14 Princeton after 322 surfacings and  994 SAC files
 # Died in service: P-09 since 2023-08-31 Princeton after 350 surfacings and  523 SAC files
 # Died in service: P-10 since 2024-12-11 Princeton after                    1302 SAC files
+# Died in service: P-11 since 2025-03-17 Princeton after 441 surfacings and  888 SAC files
 # Died in service: P-12 since 2024-11-04 Princeton after                     346 SAC files
 # Died in service: P-22 since 2025-01-09 Princeton after                    1366 SAC files
 # Died undeployed: P-30 since 2019-08-07 SUSTECH
 # Died in service: N-03 since 2019-01-02 JAMSTEC
+# Died in service: P-27 since 2024-05-06 SUSTECH
 # Died in service: P-34 since 2019-11-16 SUSTECH
+# Died in service: P-39 since 2024-04-15 SUSTECH
+# Died in service: P-41 since 2024-05-23 SUSTECH
+# Died in service: P-42 since 2024-03-22 SUSTECH
 # Died in service: P-43 since 2022-07-06 SUSTECH
+# Died in service: P-45 since 2025-02-09 SUSTECH
+# Died in service: P-46 since 2025-02-06 SUSTECH
 # Died in service: P-47 since 2020-03-28 SUSTECH
+# Died in service: P-48 since 2023-04-19 SUSTECH
+# Died in service: P-49 since 2024-12-17 SUSTECH
 # Died undeployed: P-60 since 2020-07-24 SUSTECH
 # Died in service: R-01 since 2022-05-11 STANFORD (spectral)
 # Died in service: R-06 since 2021-10-08 STANFORD (spectral)
 # Died in service: R-50 since 2021-07-26 JAMSTEC (tsunami)
 # Died in service: R-52 since 2023-03-02 JAMSTEC
+# Died in service: R-58 since 2023-05-06 SUSTECH
+# Died in service: R-59 since 2023-10-04 SUSTECH
 # Died in service: R-63 since 2022-09-21 SUSTECH
 # Died in service: P-65 since 2022-05-24 SUSTECH (in Taiwan EEZ)
 # Died in service: P-66 since 2023-07-12 SUSTECH (bad deployment)
 # Died captively : P-67 since 2022-02-20 SUSTECH (in Philippines EEZ)
+# Died in service: R-71 since 2024-01-17 SUSTECH
+# Died in service: R-72 since 2024-07-09 SUSTECH
 #
 # So... KOBE \ GEOAZUR \ PRINCETON \ SUSTECH \ KOBE
 #   ... STANFORD \ SUSTECH
