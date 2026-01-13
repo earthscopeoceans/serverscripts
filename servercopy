@@ -5,7 +5,7 @@
 # VIT2TBL for location organization and VITEXPORT for Web publishing.  
 #
 # Last input from aetimmes-at-princeton.edu, 10/08/2018
-# Last modified by fjsimons-at-alum.mit.edu, 05/07/2024
+# Last modified by fjsimons-at-alum.mit.edu, 05/23/2025
 
 # Where was I, so I can return to it
 set returnto = `pwd`
@@ -42,6 +42,7 @@ rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av eso@mermaid.unice.fr:\*.
 rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av eso@mermaid.unice.fr:\*.vit $whereto
 rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av eso@mermaid.unice.fr:\*.cmd $whereto
 rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av eso@mermaid.unice.fr:\*.out $whereto
+rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av eso@mermaid.unice.fr:\*.BIN $whereto
 
 # From KobeUni at GeoAzur at Nice, we just get the relevant data
 echo "\nRSYNCING KOBE MERMAIDS\n"
@@ -50,6 +51,7 @@ rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av kobeuni@mermaid.unice.fr
 rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av kobeuni@mermaid.unice.fr:\*.vit $whereto
 rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av kobeuni@mermaid.unice.fr:\*.cmd $whereto
 rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av kobeuni@mermaid.unice.fr:\*.out $whereto
+rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av kobeuni@mermaid.unice.fr:\*.BIN $whereto
 
 # From SUSTECH at Shenzhen, we just get the relevant data - store them separately
 echo "\nRSYNCING SUSTECH MERMAIDS\n"
@@ -65,6 +67,9 @@ set upass1  = `cat /u/fjsimons/EarthScopeOceans/CLS/Preparation/mermaid_0101`
 set upass2  = `cat /u/fjsimons/EarthScopeOceans/CLS/Preparation/mermaid_0102`
 lftp -u $upass1 -e "lcd '$wherejp' ; mirror -c -f *.vit ; mirror -c -f *.MER ; mirror -c -f *.BIN ; mirror -c -f *.cmd ; mirror -c -f *.out ; mirror -c -f *.S61 ; quit;" sftp://iridium-rudics.cls.fr
 lftp -u $upass2 -e "lcd '$wherejp' ; mirror -c -f *.vit ; mirror -c -f *.MER ; mirror -c -f *.BIN ; mirror -c -f *.cmd ; mirror -c -f *.out ; mirror -c -f *.S61 ; quit;" sftp://iridium-rudics.cls.fr
+
+# From OBSERVATORIO NATIONAL at CLS, we just get the relevant data - by LFTP MIRROR instead of RRSYNC
+
 
 # Then, go into the copied directories and use GIT to ink it in
 cd $whereto
