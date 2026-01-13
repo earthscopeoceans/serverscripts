@@ -4,7 +4,7 @@
 # runtime-compiled (MCC) version VIT2TBL, to the GEOWEB server
 #
 # Last input from aetimmes-at-princeton.edu, 10/08/2018
-# Last modified by fjsimons-at-alum.mit.edu, 02/07/2025
+# Last modified by fjsimons-at-alum.mit.edu, 01/13/2026
 
 # Where are these being kept?
 set fromwhere = /u/fjsimons/MERMAID/serverdata/tbldata
@@ -14,23 +14,27 @@ set tothere = /u/fjsimons/MERMAID/serverdata/locdata
 
 # Explicit list of serial numbers:
 # -------------------------------------------------------------------------
-# owned by GeoAzur    452.020-P-??    (6-7)
+# owned by GeoAzur    452.020-P-0?    (6-7)
 # owned by Princeton  452.020-P-??    (8-13, 16-25)
-# owned by Kobe Uni   452.112-N-??    (1-5)
-# owned by SUSTECH    452.020-P-????  (26-49)
-# owned by Kobe Uni   452.020-P-????  (50, 52-54)
-# owned by OSEAN      452.210-P-????  (14) 
-# owned by OSEAN      452.020-P-????  (51, 56-57, 64, 84)
-# owned by OSEAN      452.120-R-????  (0, 80, 84)
-# owned by Stanford   465.152-R-????  (1-7)
-# owned by SUSTECH    452.120-R-????  (58-69, 71-73)
-# owned by SUSTECH    452.120-S-????  (70, 81-82, 85-94)
-# owned by JAMSTEC    467.174-T-????  (100, 101)
-# owned by JAMSTEC    467.164-T-????  (102)
+# owned by Kobe Uni   452.112-N-0?    (1-5)
+# owned by SUSTECH    452.020-P-00??  (26-49)
+# owned by Kobe Uni   452.020-P-00??  (50, 52-54)
+# owned by JAMSTEC    452.020-P-00??  (56-57)
+# owned by OSEAN      452.210-P-00??  (14) 
+# owned by OSEAN      452.020-P-00??  (51, 64, 84)
+# owned by OSEAN      452.120-R-00??  (0, 80, 84)
+# owned by Stanford   465.152-R-00??  (1-7)
+# owned by SUSTECH    452.120-R-00??  (58-69, 71-73)
+# owned by SUSTECH    452.120-S-00??  (70, 81-82, 85-94)
+# owned by OBSNATBR   452.120-T-00??  (96-99)
+# owned by JAMSTEC    467.174-T-0???  (100, 101)
+# owned by JAMSTEC    467.164-T-0???  (102)
+# owned by OBSNATBR   452.120-U-10??  (106-108)
 
 # -------------------------------------------------------------------------
 # 
 # Died in service: N-02 since 2024-09-29 JAMSTEC
+# Died in service: P-06 since 2025-05-06 Geoazur after being fished up in Fiji
 # Died in service: P-07 since 2018-09-11 Geoazur
 # Died in service: P-08 since 2022-05-14 Princeton after 322 surfacings and  994 SAC files
 # Died in service: P-09 since 2023-08-31 Princeton after 350 surfacings and  523 SAC files
@@ -38,6 +42,10 @@ set tothere = /u/fjsimons/MERMAID/serverdata/locdata
 # Died in service: P-11 since 2025-03-17 Princeton after 441 surfacings and  888 SAC files
 # Died in service: P-12 since 2024-11-04 Princeton after                     346 SAC files
 # Died in service: P-22 since 2025-01-09 Princeton after                    1366 SAC files
+# Died in service: P-25 since 2025-10-03 Princeton after 345 surfacings and   90 SAC files
+# Died in service: P-17 since 2025-09-22 Princeton after 338 surfacings and  212 SAC files
+# Died in service: P-24 since 2025-09-16 Princeton after 494 surfacings and  239 SAC files
+# Died in service: R-05 since 2025-09-22 STANFORD  after 189 surfacings and 9806 PSD files
 # Died undeployed: P-30 since 2019-08-07 SUSTECH
 # Died in service: N-03 since 2019-01-02 JAMSTEC
 # Died in service: P-27 since 2024-05-06 SUSTECH
@@ -51,6 +59,7 @@ set tothere = /u/fjsimons/MERMAID/serverdata/locdata
 # Died in service: P-47 since 2020-03-28 SUSTECH
 # Died in service: P-48 since 2023-04-19 SUSTECH
 # Died in service: P-49 since 2024-12-17 SUSTECH
+# Died in service: P-56 since 20??-??-?? JAMSTEC
 # Died undeployed: P-60 since 2020-07-24 SUSTECH
 # Died in service: R-01 since 2022-05-11 STANFORD (spectral)
 # Died in service: R-06 since 2021-10-08 STANFORD (spectral)
