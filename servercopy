@@ -30,15 +30,10 @@ set wheretbl = /u/fjsimons/MERMAID/serverdata/tbldata
 # From Princeton at Princeton, we get it all
 echo "\nRSYNCING PRINCETON MERMAIDS\n"
 rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av mermaid@mermaid.princeton.edu:\*.\* $whereto
-# From mermaid back to lemaitre
-# ssh mermaid@mermaid.princeton.edu
-# rsync -av *.* fjsimons@lemaitre.princeton.edu:$whereto/
 
 # From Stanford at Princeton, we also get it all
 echo "\nRSYNCING STANFORD MERMAIDS\n"
 rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av psdmaid@mermaid.princeton.edu:\*.\* $whereps
-# ssh psdmaid@mermaid.princeton.edu
-# rsync -av *.* fjsimons@lemaitre.princeton.edu:$whereps
 
 # From GeoAzur at Nice, we just get the relevant data
 # Last ran by hand Jan 22, 2026, no success, need to change to lftp (Joel uses FileZilla)
