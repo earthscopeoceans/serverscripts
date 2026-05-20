@@ -47,9 +47,9 @@ echo "\nRSYNCING KOBE MERMAIDS\n"
 # Last ran by hand Jan 22, 2026, no success, also need to change using lftp
 
 # From SUSTECH at Shenzhen, we just get the relevant data - store them separately
-# Last run by hand Feb 17, 2026, no updates since Aug 20 except one 452.020-P-0028.cmd
 echo "\nRSYNCING SUSTECH MERMAIDS\n"
 # rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av mermaid@134.175.126.179:\*.MER $wherest
+# Last run by hand Feb 17, 2026, no more updates
 
 # From JAMSTEC at CLS, we just get the relevant data - by LFTP MIRROR instead of RRSYNC
 set upass1  = `cat /u/fjsimons/EarthScopeOceans/CLS/Preparation/mermaid_0101`
