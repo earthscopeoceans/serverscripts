@@ -1,11 +1,11 @@
 #!/bin/tcsh
 #
 # Makes a copy of the MERMAID server and pushes the metadata in
-# processed form to the server. This comprises rsyncing data, running
+# processed form to the GEOWEB server. This comprises rsyncing,
 # VIT2TBL for location organization and VITEXPORT for Web publishing.  
 #
 # Last input from aetimmes-at-princeton.edu, 10/08/2018
-# Last modified by fjsimons-at-alum.mit.edu, 05/23/2025
+# Last modified by fjsimons-at-alum.mit.edu, 05/19/2026
 
 # Where was I, so I can return to it
 set returnto = `pwd`
@@ -22,11 +22,11 @@ set wherevit = /u/fjsimons/MERMAID/serverdata/vitdata
 set wheretbl = /u/fjsimons/MERMAID/serverdata/tbldata
 
 # Do not mess with SCP as you will need to supply passwords.
-# The better solution for setting up a CRON job via passwordless
-# single-command-use SSH keys. Of course the public keys need to be
-# present on the respective servers, and the appropriate range for
+# The better solution sets up a CRON job via passwordless
+# single-command-use SSH keys. Public keys need to be present
+# on the respective servers, and the appropriate range for
 # which they are designed needs to be identified using RRSYNC. 
-
+ 
 # From Princeton at Princeton, we get it all
 echo "\nRSYNCING PRINCETON MERMAIDS\n"
 rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av mermaid@mermaid.princeton.edu:\*.\* $whereto
@@ -36,9 +36,7 @@ echo "\nRSYNCING STANFORD MERMAIDS\n"
 rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av psdmaid@mermaid.princeton.edu:\*.\* $whereps
 
 # From GeoAzur at Nice, we just get the relevant data
-# Last ran by hand Jan 22, 2026, no success, need to change to lftp (Joel uses FileZilla)
-# Be changing that to lftp automaid@taal.unice.fr
-# echo "\nRSYNCING NICE MERMAIDS\n"
+echo "\nRSYNCING NICE MERMAIDS\n"
 # rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av eso@mermaid.unice.fr:\*.MER $whereto
 # rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av eso@mermaid.unice.fr:\*.LOG $whereto
 # rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av eso@mermaid.unice.fr:\*.vit $whereto
@@ -46,7 +44,10 @@ rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av psdmaid@mermaid.princeto
 # rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av eso@mermaid.unice.fr:\*.out $whereto
 # rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av eso@mermaid.unice.fr:\*.BIN $whereto
 
-# From KobeUni at GeoAzur at Nice, we just get the relevant data
+# Last ran by hand Jan 22, 2026, no success, need to change to lftp (Joel uses FileZilla)
+# Be changing that to lftp automaid@taal.unice.fr
+
+ # From KobeUni at GeoAzur at Nice, we just get the relevant data
 # Last ran by hand Jan 22, 2026, no success, also need to change using lftp STILL DATA
 # echo "\nRSYNCING KOBE MERMAIDS\n"
 # rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av kobeuni@mermaid.unice.fr:\*.MER $whereto
