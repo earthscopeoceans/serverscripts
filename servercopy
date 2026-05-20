@@ -15,6 +15,7 @@ set whereto =  /u/fjsimons/MERMAID/server
 set wherest =  /u/fjsimons/MERMAID/sustech
 set whereps =  /u/fjsimons/MERMAID/psdmaid
 set wherejp =  /u/fjsimons/MERMAID/moby
+set whereon =  /u/fjsimons/MERMAID/brazil
 
 # Where will, additionally, all the *.VIT files be copied TO?
 set wherevit = /u/fjsimons/MERMAID/serverdata/vitdata
@@ -62,6 +63,11 @@ lftp -u $upass3 -e "lcd '$wherejp' ; mirror -c -f *.vit ; mirror -c -f *.MER ; m
 lftp -u $upass4 -e "lcd '$wherejp' ; mirror -c -f *.vit ; mirror -c -f *.MER ; mirror -c -f *.BIN ; mirror -c -f *.cmd ; mirror -c -f *.out ; mirror -c -f *.S61 ; quit;" sftp://iridium-rudics.cls.fr
 
 # From OBSERVATORIO NATIONAL at CLS, we just get the relevant data - by LFTP MIRROR instead of RRSYNC
+set floats = (0095 0096 0097 0098 0099 0106 0107 0108)
+foreach float ($floats[*])
+    set upass = `cat /u/fjsimons/EarthScopeOceans/CLS/Preparation/mermaid_0101`
+    lftp -u $upass -e "lcd '$whereon' ; mirror -c -f *.vit ; mirror -c -f *.MER ; mirror -c -f *.BIN ; mirror -c -f *.cmd ; mirror -c -f *.out ; mirror -c -f *.S61 ; quit;" sftp://iridium-rudics.cls.fr
+end
 
 # Then, go into the copied directories and use GIT to ink it in
 cd $whereto
