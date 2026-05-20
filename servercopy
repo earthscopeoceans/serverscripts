@@ -53,19 +53,16 @@ echo "\nRSYNCING SUSTECH MERMAIDS\n"
 # Last run by hand Feb 17, 2026, no more updates
 
 # From JAMSTEC at CLS, we just get the relevant data - by LFTP MIRROR instead of RRSYNC
-set upass1  = `cat /u/fjsimons/EarthScopeOceans/CLS/Preparation/mermaid_0101`
-set upass2  = `cat /u/fjsimons/EarthScopeOceans/CLS/Preparation/mermaid_0102`
-set upass3  = `cat /u/fjsimons/EarthScopeOceans/CLS/Preparation/mermaid_0056` 
-set upass4  = `cat /u/fjsimons/EarthScopeOceans/CLS/Preparation/mermaid_0057`
-lftp -u $upass1 -e "lcd '$wherejp' ; mirror -c -f *.vit ; mirror -c -f *.MER ; mirror -c -f *.BIN ; mirror -c -f *.cmd ; mirror -c -f *.out ; mirror -c -f *.S61 ; quit;" sftp://iridium-rudics.cls.fr
-lftp -u $upass2 -e "lcd '$wherejp' ; mirror -c -f *.vit ; mirror -c -f *.MER ; mirror -c -f *.BIN ; mirror -c -f *.cmd ; mirror -c -f *.out ; mirror -c -f *.S61 ; quit;" sftp://iridium-rudics.cls.fr
-lftp -u $upass3 -e "lcd '$wherejp' ; mirror -c -f *.vit ; mirror -c -f *.MER ; mirror -c -f *.BIN ; mirror -c -f *.cmd ; mirror -c -f *.out ; mirror -c -f *.S61 ; quit;" sftp://iridium-rudics.cls.fr
-lftp -u $upass4 -e "lcd '$wherejp' ; mirror -c -f *.vit ; mirror -c -f *.MER ; mirror -c -f *.BIN ; mirror -c -f *.cmd ; mirror -c -f *.out ; mirror -c -f *.S61 ; quit;" sftp://iridium-rudics.cls.fr
-
+set floats  = (0056 0057 0101 0102)
+foreach float ($floats[*])
+    set upass  = `cat /u/fjsimons/EarthScopeOceans/CLS/Preparation/mermaid_$float`
+    lftp -u $upass -e "lcd '$wherejp' ; mirror -c -f *.vit ; mirror -c -f *.MER ; mirror -c -f *.BIN ; mirror -c -f *.cmd ; mirror -c -f *.out ; mirror -c -f *.S61 ; quit;" sftp://iridium-rudics.cls.fr
+end
+    
 # From OBSERVATORIO NATIONAL at CLS, we just get the relevant data - by LFTP MIRROR instead of RRSYNC
 set floats = (0095 0096 0097 0098 0099 0106 0107 0108)
 foreach float ($floats[*])
-    set upass = `cat /u/fjsimons/EarthScopeOceans/CLS/Preparation/mermaid_0101`
+    set upass = `cat /u/fjsimons/EarthScopeOceans/CLS/Preparation/mermaid_$float`
     lftp -u $upass -e "lcd '$whereon' ; mirror -c -f *.vit ; mirror -c -f *.MER ; mirror -c -f *.BIN ; mirror -c -f *.cmd ; mirror -c -f *.out ; mirror -c -f *.S61 ; quit;" sftp://iridium-rudics.cls.fr
 end
 
@@ -86,11 +83,16 @@ cd $wherejp
 git add .
 git commit -m "A whole fresh copy made"
 
+cd $whereon
+git add .
+git commit -m "A whole fresh copy made"
+
 # Then, copy the *vit files separately for extra care
 /bin/cp -u $whereto/*.vit $wherevit
 /bin/cp -u $wherest/*.vit $wherevit
 /bin/cp -u $whereps/*.vit $wherevit
 /bin/cp -u $wherejp/*.vit $wherevit
+/bin/cp -u $whereon/*.vit $wherevit
 
 # Make a local backup of that *vit file repository also
 cd $wherevit
