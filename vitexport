@@ -4,7 +4,7 @@
 # runtime-compiled (MCC) version VIT2TBL, to the GEOWEB server
 #
 # Last input from aetimmes-at-princeton.edu, 10/08/2018
-# Last modified by fjsimons-at-alum.mit.edu, 01/13/2026
+# Last modified by fjsimons-at-alum.mit.edu, 05/22/2026
 
 # Where are these being kept?
 set fromwhere = /u/fjsimons/MERMAID/serverdata/tbldata
@@ -23,13 +23,13 @@ set tothere = /u/fjsimons/MERMAID/serverdata/locdata
 # owned by OSEAN      452.210-P-00??  (14) 
 # owned by OSEAN      452.020-P-00??  (51, 64, 84)
 # owned by OSEAN      452.120-R-00??  (0, 80, 84)
-# owned by Stanford   465.152-R-00??  (1-7)
+# owned by Stanford   465.152-R-00??  (1-7 aka B0074-B0080)
 # owned by SUSTECH    452.120-R-00??  (58-69, 71-73)
 # owned by SUSTECH    452.120-S-00??  (70, 81-82, 85-94)
 # owned by OBSNATBR   452.120-T-00??  (96-99)
-# owned by JAMSTEC    467.174-T-0???  (100, 101)
-# owned by JAMSTEC    467.164-T-0???  (102)
-# owned by OBSNATBR   452.120-U-10??  (106-108)
+# owned by JAMSTEC    467.174-T-0???  (0100, 0101)
+# owned by JAMSTEC    467.164-T-0???  (0102)
+# owned by OBSNATBR   452.120-U-10??  (0106-0108)
 
 # -------------------------------------------------------------------------
 # 
@@ -59,7 +59,7 @@ set tothere = /u/fjsimons/MERMAID/serverdata/locdata
 # Died in service: P-47 since 2020-03-28 SUSTECH
 # Died in service: P-48 since 2023-04-19 SUSTECH
 # Died in service: P-49 since 2024-12-17 SUSTECH
-# Died in service: P-56 since 20??-??-?? JAMSTEC
+# Died in service: P-56 since 2022-01-20 JAMSTEC (need to put on webpage)
 # Died undeployed: P-60 since 2020-07-24 SUSTECH
 # Died in service: R-01 since 2022-05-11 STANFORD (spectral)
 # Died in service: R-06 since 2021-10-08 STANFORD (spectral)
@@ -73,6 +73,7 @@ set tothere = /u/fjsimons/MERMAID/serverdata/locdata
 # Died captively : P-67 since 2022-02-20 SUSTECH (in Philippines EEZ)
 # Died in service: R-71 since 2024-01-17 SUSTECH
 # Died in service: R-72 since 2024-07-09 SUSTECH
+# Died in service: T-0100 since 2026-01-05 JAMSTEC (Princeton 4K)
 #
 # So... KOBE \ GEOAZUR \ PRINCETON \ SUSTECH \ KOBE
 #   ... STANFORD \ SUSTECH
@@ -82,7 +83,7 @@ set lettrs = ( N  N  N  N  N \
                P  P \
                P  P  P  P  P  P     P  P  P  P  P  P  P  P  P P \
                P  P  P  P     P  P  P  P  P  P  P  P  P  P  P  P  P  P  P  P  P  P  P \
-               P     P  P  P \
+               P     P  P  P     P  P \
                R  R  R  R  R  R  R \
                R  R     R  R  R    R  R  R    R      R   R   R \
 	       T  T  T )
@@ -93,7 +94,7 @@ set floats = (01 02 03 04 05 \
               06 07 \
               08 09 10 11 12 13    16 17 18 19 20 21 22 23 24 25 \
               26 27 28 29    31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 \
-              50    52 53 54 \
+              50    52 53 54    56 57 \
               01 02 03 04 05 06 07 \
               58 59    61 62 63    65 66 67    69    71 72 73 \
 	      100 101 102 )
