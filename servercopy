@@ -16,7 +16,8 @@ set wherest =  /u/fjsimons/MERMAID/sustech
 set whereps =  /u/fjsimons/MERMAID/psdmaid
 set wherejp =  /u/fjsimons/MERMAID/moby
 set whereon =  /u/fjsimons/MERMAID/brazil
-set whereun =  /u/fjsimons/MERMAID/unice
+set whereku =  /u/fjsimons/MERMAID/unice/kobeuni
+set wherees =  /u/fjsimons/MERMAID/unice/eso
 
 # Where will, additionally, all the *.VIT files be copied TO?
 set wherevit = /u/fjsimons/MERMAID/serverdata/vitdata
@@ -47,16 +48,14 @@ end
 # lftp automaid@taal.unice.fr
 # From ESO GeoAzur at Nice, we just get the relevant data (MER, LOG, BIN, cmd, out, vit)
 echo "\nRSYNCING ESO MERMAIDS\n"
-lftp -u $upass -e "lcd '$whereun' ; mirror -c -f eso/*.vit ; quit;" taal.unice.fr
+lftp -u $upass -e "lcd '$wherees' ; mirror -c -f eso/*.vit ; quit;" taal.unice.fr
 # From KobeUni at GeoAzur at Nice, we just get the relevant data (MER, LOG, BIN, cmd, out, vit)
 echo "\nRSYNCING KOBEUNI MERMAIDS\n"
 set upass  = `cat /u/fjsimons/EarthScopeOceans/CLS/Preparation/mermaid_taal-unice`
-lftp -u $upass -e "lcd '$whereun' ; mirror -c -f kobeuni/*.vit ; quit;" taal.unice.fr
+lftp -u $upass -e "lcd '$whereku' ; mirror -c -f kobeuni/*.vit ; quit;" taal.unice.fr
 
 # From SUSTECH at Shenzhen, we just get the relevant data - store them separately
 echo "\nRSYNCING SUSTECH MERMAIDS\n"
-# rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av mermaid@134.175.126.179:\*.MER $wherest
-# Last run by hand Feb 17, 2026, no more updates
 
 # From JAMSTEC at CLS, we just get the relevant data - by LFTP MIRROR instead of RRSYNC
 set floats  = (0056 0057 0101 0102)
