@@ -44,12 +44,14 @@ foreach float ($floats[*])
     lftp -u $upass -e "lcd '$whereto' ; mirror -c -f *.vit ; mirror -c -f *.MER ; mirror -c -f *.BIN ; mirror -c -f *.cmd ; mirror -c -f *.out ; quit;" sftp://iridium-rudics.cls.fr
 end
 
+# lftp automaid@taal.unice.fr
 # From ESO GeoAzur at Nice, we just get the relevant data (MER, LOG, BIN, cmd, out, vit)
 echo "\nRSYNCING ESO MERMAIDS\n"
+lftp -u $upass -e "lcd '$whereun' ; mirror -c -f eso/*.vit ; quit;" taal.unice.fr
 # From KobeUni at GeoAzur at Nice, we just get the relevant data (MER, LOG, BIN, cmd, out, vit)
 echo "\nRSYNCING KOBEUNI MERMAIDS\n"
 set upass  = `cat /u/fjsimons/EarthScopeOceans/CLS/Preparation/mermaid_taal-unice`
-lftp -u $upass -e "lcd '$whereun' ; mirror -c -f * ; quit;" sftp://taal.unice.fr
+lftp -u $upass -e "lcd '$whereun' ; mirror -c -f kobeuni/*.vit ; quit;" taal.unice.fr
 
 # From SUSTECH at Shenzhen, we just get the relevant data - store them separately
 echo "\nRSYNCING SUSTECH MERMAIDS\n"
