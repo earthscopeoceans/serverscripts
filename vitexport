@@ -41,14 +41,17 @@ set tothere = /u/fjsimons/MERMAID/serverdata/locdata
 # Died in service: P-10 since 2024-12-11 Princeton after                    1302 SAC files
 # Died in service: P-11 since 2025-03-17 Princeton after 441 surfacings and  888 SAC files
 # Died in service: P-12 since 2024-11-04 Princeton after                     346 SAC files
-# Died in servive: P-16 since 2026-04-02 Princeton after
+# Died in service: P-16 since 2026-04-02 Princeton after
 # Died in service: P-22 since 2025-01-09 Princeton after                    1366 SAC files
 # Died in service: P-25 since 2025-10-03 Princeton after 345 surfacings and   90 SAC files
 # Died in service: P-17 since 2025-09-22 Princeton after 338 surfacings and  212 SAC files
 # Died in service: P-24 since 2025-09-16 Princeton after 494 surfacings and  239 SAC files
 # Died undeployed: P-30 since 2019-08-07 SUSTECH
+#
 # Died in service: N-02 since 2024-09-29 JAMSTEC
 # Died in service: N-03 since 2019-01-02 JAMSTEC
+# Died in service: N-04 since 2019-01-02 JAMSTEC
+#
 # Died in service: P-27 since 2024-05-06 SUSTECH
 # Died in service: P-34 since 2019-11-16 SUSTECH
 # Died in service: P-39 since 2024-04-15 SUSTECH
@@ -77,6 +80,7 @@ set tothere = /u/fjsimons/MERMAID/serverdata/locdata
 # Died in service: R-71 since 2024-01-17 SUSTECH
 # Died in service: R-72 since 2024-07-09 SUSTECH
 # Died in service: T-0100 since 2026-01-05 JAMSTEC (Princeton 4K)
+# Died in service: T-0102 since 2025-12-13 JAMSTEC (4K)
 #
 # So... KOBE \ GEOAZUR \ PRINCETON \ SUSTECH \ KOBE
 #   ... STANFORD \ SUSTECH
