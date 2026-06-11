@@ -4,7 +4,7 @@
 # runtime-compiled (MCC) version VIT2TBL, to the GEOWEB server
 #
 # Last input from aetimmes-at-princeton.edu, 10/08/2018
-# Last modified by fjsimons-at-alum.mit.edu, 05/22/2026
+# Last modified by fjsimons-at-alum.mit.edu, 06/10/2026
 
 # Where are these being kept?
 set fromwhere = /u/fjsimons/MERMAID/serverdata/tbldata
@@ -33,20 +33,21 @@ set tothere = /u/fjsimons/MERMAID/serverdata/locdata
 
 # -------------------------------------------------------------------------
 # 
-# Died in service: N-02 since 2024-09-29 JAMSTEC
 # Died in service: P-06 since 2025-05-06 Geoazur after being fished up in Fiji
 # Died in service: P-07 since 2018-09-11 Geoazur
+#
 # Died in service: P-08 since 2022-05-14 Princeton after 322 surfacings and  994 SAC files
 # Died in service: P-09 since 2023-08-31 Princeton after 350 surfacings and  523 SAC files
 # Died in service: P-10 since 2024-12-11 Princeton after                    1302 SAC files
 # Died in service: P-11 since 2025-03-17 Princeton after 441 surfacings and  888 SAC files
 # Died in service: P-12 since 2024-11-04 Princeton after                     346 SAC files
+# Died in servive: P-16 since 2026-04-02 Princeton after
 # Died in service: P-22 since 2025-01-09 Princeton after                    1366 SAC files
 # Died in service: P-25 since 2025-10-03 Princeton after 345 surfacings and   90 SAC files
 # Died in service: P-17 since 2025-09-22 Princeton after 338 surfacings and  212 SAC files
 # Died in service: P-24 since 2025-09-16 Princeton after 494 surfacings and  239 SAC files
-# Died in service: R-05 since 2025-09-22 STANFORD  after 189 surfacings and 9806 PSD files
 # Died undeployed: P-30 since 2019-08-07 SUSTECH
+# Died in service: N-02 since 2024-09-29 JAMSTEC
 # Died in service: N-03 since 2019-01-02 JAMSTEC
 # Died in service: P-27 since 2024-05-06 SUSTECH
 # Died in service: P-34 since 2019-11-16 SUSTECH
@@ -62,6 +63,8 @@ set tothere = /u/fjsimons/MERMAID/serverdata/locdata
 # Died in service: P-56 since 2022-01-20 JAMSTEC (need to put on webpage)
 # Died undeployed: P-60 since 2020-07-24 SUSTECH
 # Died in service: R-01 since 2022-05-11 STANFORD (spectral)
+# Died in service: R-03 since 2026-04-01 STANFORD (spectral) after 
+# Died in service: R-05 since 2025-09-22 STANFORD (spectral) after 189 surfacings and 9806 PSD files
 # Died in service: R-06 since 2021-10-08 STANFORD (spectral)
 # Died in service: R-50 since 2021-07-26 JAMSTEC (tsunami)
 # Died in service: R-52 since 2023-03-02 JAMSTEC
