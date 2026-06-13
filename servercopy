@@ -61,7 +61,8 @@ lftp -u $upass -e "lcd '$whereku' ; mirror -c -f kobeuni/*.MER ; mirror -c -f ko
 
 # From SUSTECH at Shenzhen, we just get the relevant data - store them separately
 echo "\nSUSTECH MERMAIDS\n"
-# using rsync command as with Princeton, but the Shenzhen server no longer exists, and no new way
+#rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av mermaid@134.175.126.179:\*.[MER,LOG,BIN,cmd,out,vit,...] $wherest
+# The server ceased to exist
 
 # From JAMSTEC at CLS, we also just get the relevant data - always by LFTP mirror, never RRSYNC
 echo "\nJAMSTEC MERMAIDS\n"
