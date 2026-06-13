@@ -43,6 +43,7 @@ set tothere = /u/fjsimons/MERMAID/serverdata/locdata
 # Died in service: P-12 since 2024-11-04 Princeton after                     346 SAC files
 #                  P-13 
 # Died in service: P-16 since 2026-04-02 Princeton after
+# Died in service: P-17 since 2025-09-22 Princeton after 338 surfacings and  212 SAC files
 #                  P-18
 #                  P-19
 #                  P-20
@@ -50,7 +51,6 @@ set tothere = /u/fjsimons/MERMAID/serverdata/locdata
 # Died in service: P-22 since 2025-01-09 Princeton after                    1366 SAC files
 #                  P-23
 # Died in service: P-25 since 2025-10-03 Princeton after 345 surfacings and   90 SAC files
-# Died in service: P-17 since 2025-09-22 Princeton after 338 surfacings and  212 SAC files
 # Died in service: P-24 since 2025-09-16 Princeton after 494 surfacings and  239 SAC files
 #
 # Died undeployed: P-30 since 2019-08-07 SUSTECH
@@ -58,7 +58,7 @@ set tothere = /u/fjsimons/MERMAID/serverdata/locdata
 # Died in service: N-02 since 2024-09-29 JAMSTEC
 # Died in service: N-03 since 2019-01-02 JAMSTEC
 # Died in service: N-04 since 2025-10-13 JAMSTEC
-#
+
 # Died in service: P-27 since 2024-05-06 SUSTECH
 # Died in service: P-34 since 2019-11-16 SUSTECH
 # Died in service: P-39 since 2024-04-15 SUSTECH
@@ -72,10 +72,15 @@ set tothere = /u/fjsimons/MERMAID/serverdata/locdata
 # Died in service: P-49 since 2024-12-17 SUSTECH
 # Died in service: P-56 since 2022-01-20 JAMSTEC (need to put on webpage)
 # Died undeployed: P-60 since 2020-07-24 SUSTECH
+
 # Died in service: R-01 since 2022-05-11 STANFORD (spectral)
-# Died in service: R-03 since 2026-04-01 STANFORD (spectral) after 
+#                  R-02
+# Died in service: R-03 since 2026-04-01 STANFORD (spectral) after
+#                  R-04
 # Died in service: R-05 since 2025-09-22 STANFORD (spectral) after 189 surfacings and 9806 PSD files
 # Died in service: R-06 since 2021-10-08 STANFORD (spectral)
+#                  R-07
+
 # Died in service: R-50 since 2021-07-26 JAMSTEC (tsunami)
 # Died in service: R-52 since 2023-03-02 JAMSTEC
 # Died in service: R-58 since 2023-05-06 SUSTECH
@@ -98,10 +103,10 @@ set tothere = /u/fjsimons/MERMAID/serverdata/locdata
 # Remember NOTHING can follow the continuation symbol on the same line...
 set lettrs = ( N  N  N  N  N \
                P  P \
-               P  P  P  P  P  P     P  P  P  P  P  P  P  P  P P \
+               P     P     P  P  P  P     P  P  P \
                P  P  P  P     P  P  P  P  P  P  P  P  P  P  P  P  P  P  P  P  P  P  P \
                P     P  P  P     P  P \
-               R  R  R  R  R  R  R \
+               R     R     R \
                R  R     R  R  R    R  R  R    R      R   R   R \
 	       T  T  T )
 # Remember we're trying to capture the two- and four-digits conventions in one loop
@@ -109,10 +114,10 @@ set lettrs = ( N  N  N  N  N \
 # remove leading zeroes past 7 or bad octals! but kind of need them at the end; so check
 set floats = (01 02 03 04 05 \
               06 07 \
-              08 09 10 11 12 13    16 17 18 19 20 21 22 23 24 25 \
+              13    16    18 19 20 21    23 24 25 \
               26 27 28 29    31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 \
               50    52 53 54    56 57 \
-              01 02 03 04 05 06 07 \
+              02    04    07 \
               58 59    61 62 63    65 66 67    69    71 72 73 \
 	      100 101 102 )
 
