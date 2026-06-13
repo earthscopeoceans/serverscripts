@@ -55,10 +55,12 @@ set tothere = /u/fjsimons/MERMAID/serverdata/locdata
 #
 # Died undeployed: P-30 since 2019-08-07 SUSTECH
 #
+# Died in service: N-01 since 2025-07-11 JAMSTEC
 # Died in service: N-02 since 2024-09-29 JAMSTEC
-# Died in service: N-03 since 2019-01-02 JAMSTEC
-# Died in service: N-04 since 2025-10-13 JAMSTEC
-
+# Died in service: N-03 since 2019-01-03 JAMSTEC
+# Died in service: N-04 since 2025-07-14 JAMSTEC
+# Died in service: N-05 since 2025-07-10 JAMSTEC
+#
 # Died in service: P-27 since 2024-05-06 SUSTECH
 # Died in service: P-34 since 2019-11-16 SUSTECH
 # Died in service: P-39 since 2024-04-15 SUSTECH
@@ -96,15 +98,14 @@ set tothere = /u/fjsimons/MERMAID/serverdata/locdata
 #                  T-0101
 # Died in service: T-0102 since 2025-12-13 JAMSTEC (4K)
 #
-# So... KOBE \ GEOAZUR \ PRINCETON \ SUSTECH \ KOBE
+# So... [KOBE] \ [GEOAZUR] \ PRINCETON \ SUSTECH \ KOBE
 #   ... STANFORD \ SUSTECH
 
 # We are now removing the ones that never need to be pushed again since the floats are dead!
 # Begin by removing all of them that are now in VITDATA-DEAD and TBLDATA-DEAD and LOCDATA-DEAD
 
 # Remember NOTHING can follow the continuation symbol on the same line...
-set lettrs = ( N  N  N  N  N \
-               P     P     P  P  P  P     P  P  P \
+set lettrs = ( P     P     P  P  P  P     P  P  P \
                P  P  P  P     P  P  P  P  P  P  P  P  P  P  P  P  P  P  P  P  P  P  P \
                P     P  P  P     P  P \
                R     R     R \
@@ -113,8 +114,7 @@ set lettrs = ( N  N  N  N  N \
 # Remember we're trying to capture the two- and four-digits conventions in one loop
 # Now you use printf below we get conversion error, but is it inconsequential?
 # remove leading zeroes past 7 or bad octals! but kind of need them at the end; so check
-set floats = (01 02 03 04 05 \
-              13    16    18 19 20 21    23 24 25 \
+set floats = (13    16    18 19 20 21    23 24 25 \
               26 27 28 29    31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 \
               50    52 53 54    56 57 \
               02    04    07 \
