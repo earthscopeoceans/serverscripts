@@ -12,10 +12,8 @@ set returnto = `pwd`
 
 # Where will all the data be copied TO?
 set whereto =  /u/fjsimons/MERMAID/server
-set wheretoo =  /u/fjsimons/MERMAID/server-old
 set wherest =  /u/fjsimons/MERMAID/sustech
 set whereps =  /u/fjsimons/MERMAID/psdmaid
-set wherepso =  /u/fjsimons/MERMAID/psdmaid-old
 set wherejp =  /u/fjsimons/MERMAID/moby
 set whereon =  /u/fjsimons/MERMAID/brazil
 set wherees =  /u/fjsimons/MERMAID/unice/eso
@@ -37,7 +35,7 @@ set wheretblo = /u/fjsimons/MERMAID/serverdata/tbldata-old
 # From Princeton at Princeton, we get it all
 echo "\nPRINCETON MERMAIDS\n"
 # This server is no longer being pushed to but we keep it since contracts changed
-rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av mermaid@mermaid.princeton.edu:\*.\* $wheretoo
+#rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av mermaid@mermaid.princeton.edu:\*.\* $whereto
 # This server is where we now pull from - with one username password
 set upass  = `cat /u/fjsimons/EarthScopeOceans/CLS/Preparation/mermaid_iridium-rudics`
 lftp -u $upass -e "lcd '$whereto' ; mirror -c -f * ; quit;" sftp://iridium-rudics.cls.fr
@@ -45,7 +43,7 @@ lftp -u $upass -e "lcd '$whereto' ; mirror -c -f * ; quit;" sftp://iridium-rudic
 # From Stanford at Princeton, we also get it all - this server is no longer being pushed to 
 echo "\nSTANFORD MERMAIDS\n"
 # This server is no longer being pushed to but we keep it since contracts changed 
-rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av psdmaid@mermaid.princeton.edu:\*.\* $wherepso
+# rsync -e "ssh -i /u/fjsimons/.ssh/id_remote_backup" -av psdmaid@mermaid.princeton.edu:\*.\* $whereps
 # This server is where we now pull from - with one username and password
 set upass  = `cat /u/fjsimons/EarthScopeOceans/CLS/Preparation/psdmaid_iridium-rudics`
 lftp -u $upass -e "lcd '$whereps' ; mirror -c -f * ; quit;" sftp://iridium-rudics.cls.fr
@@ -113,10 +111,8 @@ git commit -m "A whole fresh copy made"
 
 # Then, copy the *vit files separately for extra care
 /bin/cp -u $whereto/*.vit $wherevit
-/bin/cp -u $wheretoo/*.vit $wherevito
 /bin/cp -u $wherest/*.vit $wherevit
 /bin/cp -u $whereps/*.vit $wherevit
-/bin/cp -u $wherepso/*.vit $wherevito
 /bin/cp -u $wherejp/*.vit $wherevit
 /bin/cp -u $whereon/*.vit $wherevit
 /bin/cp -u $wherees/*.vit $wherevit
@@ -140,11 +136,6 @@ end
 
 # Do not forget to unset it!
 unsetenv LD_LIBRARY_PATH
-
-# Please note that we ran the above one final time on the old server... 
-# cd $wherevito; set vitfiles = `ls *.vit` ; foreach file ($vitfiles[*])
-# /u/fjsimons/PROGRAMS/MFILES/mermaid/vit2tbl $wherevito/$file $wheretblo/$file:r.tbl ; end
-# and then we locked that away forever
 
 # And these *.tbl files then need to be pushed/synced onto GEOWEB using this script
 /u/fjsimons/PROGRAMS/UFILES/vitexport
