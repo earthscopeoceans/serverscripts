@@ -53,25 +53,37 @@ set tothere = /u/fjsimons/MERMAID/serverdata/locdata
 # Died in service: P-25 since 2025-10-03 Princeton after 345 surfacings and   90 SAC files
 # Died in service: P-24 since 2025-09-16 Princeton after 494 surfacings and  239 SAC files
 #
-# Died undeployed: P-30 since 2019-08-07 SUSTECH
-#
 #                  N-01
 # Died in service: N-02 since 2024-09-29 JAMSTEC
 # Died in service: N-03 since 2019-01-03 JAMSTEC
 # Died in service: N-04 since 2025-10-13 JAMSTEC
 #                  N-05
 #
+# Died in service: P-26 since 2025-08-12 SUSTECH
 # Died in service: P-27 since 2024-05-06 SUSTECH
+# Died in service: P-28 since 2025-08-12 SUSTECH
+# Died in service: P-29 since 2025-08-17 SUSTECH
+# Died undeployed: P-30 since 2019-08-07 SUSTECH actually deployed later so update a bit and put on webpage first maybe?
+# Died in service: P-31 since 2025-08-14 SUSTECH
+# Died in service: P-32 since 2025-08-15 SUSTECH
+# Died in service: P-32 since 2025-08-20 SUSTECH
 # Died in service: P-34 since 2019-11-16 SUSTECH
+# Died in service: P-35 since 2025-08-18 SUSTECH
+# Died in service: P-36 since 2025-08-20 SUSTECH
+# Died in service: P-37 since 2025-08-08 SUSTECH
+# Died in service: P-38 since 2025-08-12 SUSTECH
 # Died in service: P-39 since 2024-04-15 SUSTECH
+# Died in service: P-40 since 2025-08-12 SUSTECH
 # Died in service: P-41 since 2024-05-23 SUSTECH
 # Died in service: P-42 since 2024-03-22 SUSTECH
 # Died in service: P-43 since 2022-07-06 SUSTECH
+# Died in service: P-44 since 2025-05-31 SUSTECH
 # Died in service: P-45 since 2025-02-09 SUSTECH
 # Died in service: P-46 since 2025-02-06 SUSTECH
 # Died in service: P-47 since 2020-03-28 SUSTECH
 # Died in service: P-48 since 2023-04-19 SUSTECH
 # Died in service: P-49 since 2024-12-17 SUSTECH
+#
 # Died in service: P-56 since 2022-01-20 JAMSTEC (need to put on webpage)
 # Died undeployed: P-60 since 2020-07-24 SUSTECH
 
@@ -85,6 +97,7 @@ set tothere = /u/fjsimons/MERMAID/serverdata/locdata
 
 # Died in service: R-50 since 2021-07-26 JAMSTEC (tsunami)
 # Died in service: R-52 since 2023-03-02 JAMSTEC
+#
 # Died in service: R-58 since 2023-05-06 SUSTECH
 # Died in service: R-59 since 2023-10-04 SUSTECH
 # Died in service: R-63 since 2022-09-21 SUSTECH
@@ -147,8 +160,10 @@ foreach float ($floats[*])
      # Collective files, only their last line
      tail -1     $fromwhere/???.???-$letter-*$float.tbl >>! $tothere/all.txt
      # Collective files, only their first line, need to do this only once obviously...
-     # head -1 -q  $fromwhere/???.???-$letter-*$float.tbl >>! $tothere/misalo.txt
+     head -1 -q  $fromwhere/???.???-$letter-*$float.tbl >>! $tothere/misalo.txt
 end
+
+# Make the ALL file one that also includes the dead floats without redoing it, obviously
 
 # Then all of those get pushed on to the server via a passwordless
 # single-command-use SSH key for back up to a directory that is
