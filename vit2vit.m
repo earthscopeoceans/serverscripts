@@ -3,7 +3,7 @@ function begs=vit2vit
 %
 % Just a data base with deployment dates used by VIT2TBL to take out lines
 % from the *.tbl files from when the instruments were definitely not in the
-% water yet.
+% water yet. See also MISALO.TXT
 %
 % INPUT: None
 %
@@ -11,7 +11,7 @@ function begs=vit2vit
 %
 % begs   A structure array with MERMAID name and deployment date
 %
-% Last modified by fjsimons-at-alum.mit.edu, 04/18/2024
+% Last modified by fjsimons-at-alum.mit.edu, 06/25/2026
 
 % KOBE MERMAIDS
 begs.N0001=datetime(2018,12,27,01,07,34,'TimeZone','UTC');
@@ -76,6 +76,9 @@ begs.P0050=datetime(2019,08,11,21,19,03,'TimeZone','UTC');
 begs.P0052=datetime(2019,08,16,01,56,05,'TimeZone','UTC'); 
 begs.P0053=datetime(2019,08,18,22,48,04,'TimeZone','UTC');
 begs.P0054=datetime(2019,08,20,18,14,05,'TimeZone','UTC');
+% absent 055
+begs.P0056=datetime(2020,12,14,06,53,09,'TimeZone','UTC');
+begs.P0057=datetime(2020,12,14,23,50,47,'TimeZone','UTC');
 
 % STANFORD PSDMAIDS
 begs.R0001=datetime(2021,10,11,11,39,53,'TimeZone','UTC');
