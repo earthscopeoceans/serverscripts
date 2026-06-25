@@ -114,8 +114,8 @@ set tothere = /u/fjsimons/MERMAID/serverdata/locdata
 # So... KOBE \ [GEOAZUR] \ PRINCETON \ SUSTECH \ KOBE
 #   ... STANFORD \ SUSTECH
 
-# We are now removing the ones that never need to be pushed again since the floats are dead!
-# Begin by removing all of them that are now in VITDATA-DEAD and TBLDATA-DEAD and LOCDATA-DEAD
+# Dead floats: put files now in VITDATA-DEAD / TBLDATA-DEAD / LOCDATA-DEAD
+# Dead floats: removing from processing list below, they'll never be touched again
 
 # Remember NOTHING can follow the continuation symbol on the same line...
 set lettrs = ( N  N \
