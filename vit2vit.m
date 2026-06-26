@@ -11,7 +11,7 @@ function begs=vit2vit
 %
 % begs   A structure array with MERMAID name and deployment date
 %
-% Last modified by fjsimons-at-alum.mit.edu, 06/25/2026
+% Last modified by fjsimons-at-alum.mit.edu, 06/26/2026
 
 % KOBE MERMAIDS
 begs.N0001=datetime(2018,12,27,01,07,34,'TimeZone','UTC');
@@ -107,7 +107,19 @@ begs.R0071=datetime(2021,05,03,09,13,45,'TimeZone','UTC');
 begs.R0072=datetime(2021,05,01,01,26,15,'TimeZone','UTC');
 begs.R0073=datetime(2021,05,12,11,34,25,'TimeZone','UTC');
 
+% OBSERVATORIO NACIONAL MERMAIDS
+begs.T0095=datetime(2025,09,22,28,38,14,'TimeZone','UTC');
+begs.T0096=datetime(2025,10,01,08,27,04,'TimeZone','UTC');
+begs.T0097=datetime(2025,10,01,23,28,23,'TimeZone','UTC');
+begs.T0098=datetime(2025,10,01,21,31,28,'TimeZone','UTC');
+begs.T0099=datetime(2025,10,08,23,53,32,'TimeZone','UTC');
+
 % JAMSTEC MERMAIDS
 begs.T0100=datetime(2023,06,20,06,24,32,'TimeZone','UTC');
 begs.T0101=datetime(2023,06,20,06,25,42,'TimeZone','UTC');
 begs.T0102=datetime(2023,06,20,06,33,02,'TimeZone','UTC');
+
+% OBSERVATORIO NACIONAL MERMAIDS
+begs.U0106=datetime(2025,10,01,19,54,09,'TimeZone','UTC');
+begs.U0107=datetime(2025,09,30,15,10,37,'TimeZone','UTC');
+begs.U0108=datetime(2025,09,28,07,55,13,'TimeZone','UTC');
