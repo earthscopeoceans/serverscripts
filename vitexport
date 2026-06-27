@@ -125,8 +125,7 @@ set tothere = /u/fjsimons/MERMAID/serverdata/locdata
 # So... KOBE \ [GEOAZUR] \ PRINCETON \ SUSTECH \ KOBE
 #   ... STANFORD \ SUSTECH
 
-# Dead floats: put files now in VITDATA-DEAD / TBLDATA-DEAD / LOCDATA-DEAD
-# Dead floats: removing from processing list below, they'll never be touched again
+# Only process alive floats whose files change upon SERVERCOPY
 
 # Remember NOTHING can follow the continuation symbol on the same line...
 set lettrs = ( N  N \
@@ -147,7 +146,8 @@ set floats = ( 01  05 \
                101 102 \
                106 107 108 )
 
-# A subselection of these floats changed servers, and those files need to be merged every time
+# A subselection of these floats had changed servers,
+# and those files need to be remerged every time
 set ofiles = `ls $fromalso`
 foreach ofile ($ofiles[*])
     cat $fromalso/$ofile $fromwhere/$ofile >! $fromwhere/$ofile:r.tmp
@@ -174,10 +174,9 @@ foreach float ($floats[*])
      /bin/cp -f  $fromwhere/???.???-$letter-*$float.tbl     $tothere/{$letter}${ifloat}_all.txt
 end
 
-# Collective files, only their first line, need to do this only once obviously...
-head -1 -q  $fromwhere/*.all.txt >! $tothere/misalo.txt
+# Collective files, only their first line
+head -1 -q  $tothere/*.all.txt >! $tothere/misalo.txt
 
-# Make the ALL file one that also includes the dead floats without redoing it, obviously
 # Collective files, only their last line
 tail -q -n 1 $tothere/*_all.txt >! $tothere/all.txt
 
