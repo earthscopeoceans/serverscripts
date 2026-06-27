@@ -1,8 +1,8 @@
 #!/bin/tcsh
 #
-# Makes a copy of the MERMAID servers and pushes the metadata in
-# processed form to the GEOWEB server. This comprises rsync/ltp,
-# VIT2TBL for location organization and VITEXPORT for Web publishing.  
+# RSYNC/LFTP ingest all of the content of the alive MERMAID servers, 
+# VIT2TBL/VIT2VIT process all of the *.vit  metadata into *.tbl
+# VITEXPORT pushes some of those as *_030 and *_all onto the GEOWEB server.
 #
 # Last input from aetimmes-at-princeton.edu, 10/08/2018
 # Last modified by fjsimons-at-alum.mit.edu, 06/27/2026
@@ -125,10 +125,10 @@ cd $wherevit
 git add .
 git commit -m "A whole fresh copy made"
 
-# Alternative is to use the run_vit2tbl version but then how to pass arguments to it?
+# Alternative is to use the RUN_VIT2TBL version but then how to pass arguments to it?
 setenv LD_LIBRARY_PATH .:$MCRROOT/runtime/glnxa64:$MCRROOT/bin/glnxa64:$MCRROOT/sys/os/glnxa64:$MCRROOT/sys/opengl/lib/glnxa64
 
-# And then ALL these *.vit files are converted to *.tbl files via a MATLAB precompiled code
+# And then ALL these *.vit files are converted to *.tbl files via a MATLAB precompiled code VIT2TBL which uses VIT2VIT
 set vitfiles = `ls *.vit`
 foreach file ($vitfiles[*])
     echo Processing $wherevit/$file
@@ -139,7 +139,7 @@ end
 # Do not forget to unset it!
 unsetenv LD_LIBRARY_PATH
 
-# And then SOME of these *.tbl files are pushed/synced onto GEOWEB using this script
+# And then SOME of these *.tbl files are pushed/synced onto GEOWEB using VITEXPORT
 /u/fjsimons/PROGRAMS/UFILES/vitexport
 
 # Return to where I was
