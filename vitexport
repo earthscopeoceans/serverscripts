@@ -4,12 +4,12 @@
 # runtime-compiled (MCC) version VIT2TBL, to the GEOWEB server
 #
 # Last input from aetimmes-at-princeton.edu, 10/08/2018
-# Last modified by fjsimons-at-alum.mit.edu, 06/26/2026
+# Last modified by fjsimons-at-alum.mit.edu, 06/27/2026
 
 # Where are these being kept?
 set fromwhere = /u/fjsimons/MERMAID/serverdata/tbldata
 
-# Where are these being sent to?
+# Where are these being copied to?
 set tothere = /u/fjsimons/MERMAID/serverdata/locdata
 
 # Explicit list of serial numbers:
@@ -50,8 +50,8 @@ set tothere = /u/fjsimons/MERMAID/serverdata/locdata
 #                  P-21
 # Died in service: P-22 since 2025-01-09 Princeton after                    1366 SAC files
 #                  P-23
-# Died in service: P-25 since 2025-10-03 Princeton after 345 surfacings and   90 SAC files
 # Died in service: P-24 since 2025-09-16 Princeton after 494 surfacings and  239 SAC files
+# Died in service: P-25 since 2025-10-03 Princeton after 345 surfacings and   90 SAC files
 #
 #                  N-01
 # Died in service: N-02 since 2024-09-29 JAMSTEC
@@ -84,7 +84,9 @@ set tothere = /u/fjsimons/MERMAID/serverdata/locdata
 # Died in service: P-48 since 2023-04-19 SUSTECH
 # Died in service: P-49 since 2024-12-17 SUSTECH
 #
+# Died in service: P-52 since 2023-03-02 JAMSTEC
 # Died in service: P-56 since 2022-01-20 JAMSTEC
+#
 # Died undeployed: P-60 since 2020-07-24 SUSTECH
 
 # Died in service: R-01 since 2022-05-11 STANFORD (spectral)
@@ -100,12 +102,19 @@ set tothere = /u/fjsimons/MERMAID/serverdata/locdata
 #
 # Died in service: R-58 since 2023-05-06 SUSTECH
 # Died in service: R-59 since 2023-10-04 SUSTECH
+# Died undeployed: R-60 since 2020-07-24 SUSTECH (not on map)
+# Died in service: R-61 since 2025-06-08 SUSTECH (in Philippines EEZ)
+# Died in service: R-62 since 2025-08-20 SUSTECH
 # Died in service: R-63 since 2022-09-21 SUSTECH
-# Died in service: P-65 since 2022-05-24 SUSTECH (in Taiwan EEZ)
-# Died in service: P-66 since 2023-07-12 SUSTECH (bad deployment)
-# Died captively : P-67 since 2022-02-20 SUSTECH (in Philippines EEZ)
+# Died undeployed: R-64 since 2021-04-19 SUSTECH (not on map)
+# Died in service: R-65 since 2022-05-24 SUSTECH (in Taiwan EEZ)
+# Died in service: R-66 since 2023-07-12 SUSTECH (bad deployment)
+# Died captively : R-67 since 2022-02-20 SUSTECH (in Philippines EEZ)
+# Died undeployed: P-68 since 2020-07-01 SUSTECH (not on map)
+# Died in service: R-69 since 2025-06-21 SUSTECH (in Vietnamese EEZ)
 # Died in service: R-71 since 2024-01-17 SUSTECH
 # Died in service: R-72 since 2024-07-09 SUSTECH
+# Died in service: R-73 since 2025-06-15 SUSTECH
 #
 # Died in service: T-0100 since 2026-01-05 JAMSTEC (Princeton 4K)
 #                  T-0101
@@ -119,11 +128,9 @@ set tothere = /u/fjsimons/MERMAID/serverdata/locdata
 
 # Remember NOTHING can follow the continuation symbol on the same line...
 set lettrs = ( N  N \
-               P     P     P  P  P  P     P  P  P \
-               P \
-               P     P  P  P     P  P \
+               P  P  P  P  P  P \
+               P  P     P \
                R     R     R \
-               R  R     R  R  R    R  R  R    R      R   R   R \
                T  T  T  T  T \
                T  T  \
                U  U  U )
@@ -131,11 +138,9 @@ set lettrs = ( N  N \
 # Now you use printf below we get conversion error, but is it inconsequential?
 # remove leading zeroes past 7 or bad octals! but kind of need them at the end; so check
 set floats = ( 01  05 \
-               13    16    18 19 20 21    23 24 25 \
-               30 \
-               50    52 53 54    56 57 \
+               13  18  19  20  21  23 \
+               53 54    57 \
                02    04    07 \
-               58 59    61 62 63    65 66 67    69    71 72 73 \
                95 96 97 98 99 \
                101 102 \
                106 107 108 )
@@ -161,13 +166,13 @@ foreach float ($floats[*])
      tail -60    $fromwhere/???.???-$letter-*$float.tbl  >! $tothere/{$letter}{$ifloat}_030.txt
      # Individual floats, complete history
      /bin/cp -f  $fromwhere/???.???-$letter-*$float.tbl     $tothere/{$letter}${ifloat}_all.txt
-     # Collective files, only their last line
-     tail -1     $fromwhere/???.???-$letter-*$float.tbl >>! $tothere/all.txt
      # Collective files, only their first line, need to do this only once obviously...
      # head -1 -q  $fromwhere/???.???-$letter-*$float.tbl >>! $tothere/misalo.txt
 end
 
 # Make the ALL file one that also includes the dead floats without redoing it, obviously
+# Collective files, only their last line
+tail -q -n 1 $tothere/*_all.txt >! $tothere/all.txt
 
 # Then all of those get pushed on to the server via a passwordless
 # single-command-use SSH key for back up to a directory that is
