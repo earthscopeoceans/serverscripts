@@ -6,8 +6,10 @@
 # Last input from aetimmes-at-princeton.edu, 10/08/2018
 # Last modified by fjsimons-at-alum.mit.edu, 06/27/2026
 
-# Where are these being kept?
+# Where are these being kept? Remember they get refreshed twice daily
 set fromwhere = /u/fjsimons/MERMAID/serverdata/tbldata
+# Remember there was a legacy server that needs to be remerged every time
+set fromalso = /u/fjsimons/MERMAID/serverdata/tbldata-oldserver
 
 # Where are these being copied to?
 set tothere = /u/fjsimons/MERMAID/serverdata/locdata
@@ -145,9 +147,13 @@ set floats = ( 01  05 \
                101 102 \
                106 107 108 )
 
-# Remove the ALL file before making it again - will need to reconsider once we cull the list
-/bin/rm -f $tothere/all.txt
-
+# A subselection of these floats changed servers, and those files need to be merged every time
+set ofiles = `ls $fromalso`
+foreach ofile ($ofiles[*])
+    cat $fromalso/$ofile $fromwhere/$ofile >! $fromwhere/$ofile:r.tmp
+     /usr/bin/mv $fromwhere/$ofile:r.tmp $fromwhere/$ofile
+end
+	       
 # Do them in the loop - watch the treatment of leading zeroes and letters
 @ index = 0
 foreach float ($floats[*])
@@ -166,9 +172,10 @@ foreach float ($floats[*])
      tail -60    $fromwhere/???.???-$letter-*$float.tbl  >! $tothere/{$letter}{$ifloat}_030.txt
      # Individual floats, complete history
      /bin/cp -f  $fromwhere/???.???-$letter-*$float.tbl     $tothere/{$letter}${ifloat}_all.txt
-     # Collective files, only their first line, need to do this only once obviously...
-     # head -1 -q  $fromwhere/???.???-$letter-*$float.tbl >>! $tothere/misalo.txt
 end
+
+# Collective files, only their first line, need to do this only once obviously...
+head -1 -q  $fromwhere/*.all.txt >! $tothere/misalo.txt
 
 # Make the ALL file one that also includes the dead floats without redoing it, obviously
 # Collective files, only their last line
