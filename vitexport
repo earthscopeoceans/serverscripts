@@ -175,7 +175,7 @@ foreach float ($floats[*])
 end
 
 # Collective files, only their first line
-head -1 -q  $tothere/*.all.txt >! $tothere/misalo.txt
+head -1 -q  $tothere/*_all.txt >! $tothere/misalo.txt
 
 # Collective files, only their last line
 tail -q -n 1 $tothere/*_all.txt >! $tothere/all.txt
