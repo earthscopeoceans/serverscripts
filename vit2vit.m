@@ -11,7 +11,7 @@ function begs=vit2vit
 %
 % begs   A structure array with MERMAID name and deployment date
 %
-% Last modified by fjsimons-at-alum.mit.edu, 06/26/2026
+% Last modified by fjsimons-at-alum.mit.edu, 06/27/2026
 
 % KOBE MERMAIDS
 begs.N0001=datetime(2018,12,27,01,07,34,'TimeZone','UTC');
@@ -123,3 +123,10 @@ begs.T0102=datetime(2023,06,20,06,33,02,'TimeZone','UTC');
 begs.U0106=datetime(2025,10,01,19,54,09,'TimeZone','UTC');
 begs.U0107=datetime(2025,09,30,15,10,37,'TimeZone','UTC');
 begs.U0108=datetime(2025,09,28,07,55,13,'TimeZone','UTC');
+
+% KOBE MERMAIDS
+begs.W0109=datetime(2025,10,03,10,12,12,'TimeZone','UTC');
+begs.W0110=datetime(2025,10,04,05,21,29,'TimeZone','UTC');
+begs.W0111=datetime(2025,10,17,00,27,06,'TimeZone','UTC');
+begs.W0112=datetime(2025,10,06,23,40,39,'TimeZone','UTC');
+begs.W0113=datetime(2025,10,19,19,08,10,'TimeZone','UTC');
